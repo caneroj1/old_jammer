@@ -1,0 +1,25 @@
+= content_for :devise_forms do
+	= stylesheet_link_tag 'welcome'
+.container-fluid
+	.row.top-margin
+		.col-xs-6.col-xs-offset-3
+			= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "well well-lg login" }) do |f|
+				%h2.text-center Log In
+				- if alert || notice
+					%h4.errors We're sorry.. there were some problems logging you in.
+				.form-group.errors
+					= notice
+					= alert
+				.form-group
+					= f.label :email
+					= f.email_field :email, autofocus: true, class: "form-control"
+				.form-group
+					= f.label :password
+					= f.password_field :password, autocomplete: :off, class: "form-control"
+				- if devise_mapping.rememberable?
+					.form-group
+						= f.check_box :remember_me
+						= f.label :remember_me
+				= f.submit "Log In", class: "btn btn-info"
+				.form-group
+					%p.help-block= render "devise/shared/links"
