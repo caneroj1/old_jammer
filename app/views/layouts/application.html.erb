@@ -8,17 +8,16 @@
 
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag params[:controller] %>
-
+  <%= yield :devise_forms unless params[:controller]["devise"].nil? %>
   <%= csrf_meta_tags %>
-  
 </head>
 <body>
 
-<% if notice %>
+<% if notice && params[:controller].eql?("welcome") %>
 	<p class="notice"><%= notice %></p>
 <% end %>
 
-<% if alert %>
+<% if alert && params[:controller].eql?("welcome") %>
 	<p class="alert"><%= alert %></p>
 <% end %>
 
