@@ -6,8 +6,7 @@ class ApplicationController < ActionController::Base
   # ensure that the user is logged in before they attempt to do anything
   # before_action :authenticate_user!
 
-  ## these three methods are necessary to get devise forms on
-	# any page
+  ## these three methods are necessary to get devise forms on any page
 	def resource_name
     :user
   end
