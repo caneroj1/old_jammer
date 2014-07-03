@@ -1,0 +1,59 @@
+@import "mixins";
+@import "variables";
+@import "bootstrap";
+
+body {
+	@include background-img;
+}
+
+.container-fluid {
+	height: 100%;
+}
+
+.background {
+	height: 90%;
+	padding-left: 25%;
+	padding-right: 25%;
+	position: relative;
+}
+
+h1 {
+	@include power-header($white);
+	margin-top: 10%;
+}
+
+.hold-em {
+
+}
+
+.link {
+	padding: 0;
+	a {
+		color: $white;
+		font-size: 25px;
+		font-weight: 100;
+	}
+}
+
+.background {
+	display: table;
+}
+
+.center-content {
+	display: table-cell;
+	vertical-align: middle;
+}
+
+.big-form {
+	height: 60px;
+	width: 100%;
+	margin-top: 5%;
+	font-size: 16px;
+	font-weight: 300;
+	border-radius: 14px;
+}
+
+.log-out {
+	width: 25%;
+	font-size: 16px;
+}

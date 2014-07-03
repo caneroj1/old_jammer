@@ -1,0 +1,25 @@
+@mixin background-img {
+	position: absolute;
+	z-index: 0;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	background-image: url('http://wallpaperpanda.com/wallpapers/Gi6/eLM/Gi6eLMokT.jpg');
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+}
+
+@mixin center-content($left, $top, $margin_top, $margin_left) {
+	top: $top;
+	left: $left;
+	margin: $margin_top 0 0 $margin_left;
+	position: absolute;
+}
+
+@mixin power-header($color) {
+	color: $color;
+	font-size: 65px;
+	font-weight: 100;
+}
