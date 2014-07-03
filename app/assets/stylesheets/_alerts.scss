@@ -1,0 +1,11 @@
+@import "variables";
+
+.notice, .alert {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 10;
+	color: $white;
+	font-weight: 100;
+	font-size: 16px;
+}
