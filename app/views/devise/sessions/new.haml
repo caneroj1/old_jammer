@@ -23,4 +23,6 @@
 						= f.label :remember_me
 				= f.submit "Log In", class: "btn btn-info"
 				.form-group
-					%p.help-block= render "devise/shared/links"
+					%p.help-block
+						= render "devise/shared/links"
+						= link_to 'Home', root_path
