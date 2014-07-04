@@ -25,6 +25,7 @@
 					.form-group
 						= text_field_tag :search, "", class: "form-control", placeholder: "Search"
 					= submit_tag "Search", class: "btn btn-info"
+					=link_to 'Log Out', destroy_user_session_path, class: "btn btn-danger", method: :delete
 				- if notice || alert
 					%ul.nav.navbar-nav.navbar-right
 						%li 

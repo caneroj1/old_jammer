@@ -12,3 +12,16 @@ html, body, .container-fluid, .row, .left-info {
 	margin-bottom: 0;
 	padding-top: 51px;
 }
+
+.avatar {
+	border-radius: 15px;
+}
+
+.img-circle {
+	width:140px;
+	height:140px;
+}
+
+.errors {
+	color: $red;
+}

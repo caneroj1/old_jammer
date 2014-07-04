@@ -1,0 +1,16 @@
+- if musician.id.eql?(current_user.id) && !musician.uploaded
+	= form_for musician, url: musician_path(musician), method: :patch do |f|
+		- if musician.errors.any?
+			- musician.errors.values.each do |m|
+				.form-group.errors= m[0]
+		%p.form-helper.text-center
+			You don't have a profile image. Upload one here:
+		.form-group
+			= f.file_field :avatar, class: "form-control avatar"
+		= f.submit 'Upload Image', class: "btn btn-info"
+- elsif musician.uploaded
+	.col-xs-6.col-xs-offset-3
+		= image_tag musician.avatar.url, class: "img-circle"
+- else
+	.col-xs-6.col-xs-offset-3
+		= image_tag image_url("no_avatar.png"), class: "img-circle"
