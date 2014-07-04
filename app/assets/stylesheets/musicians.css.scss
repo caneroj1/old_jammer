@@ -1,0 +1,14 @@
+// Place all the styles related to the musicians controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import "variables";
+
+html, body, .container-fluid, .row, .left-info {
+	height: 100%;
+}
+
+.left-info {
+	margin-bottom: 0;
+	padding-top: 51px;
+}
