@@ -50,3 +50,5 @@ gem 'devise'
 gem 'protected_attributes'
 # for fancy printing in the rails console
 gem 'awesome_print'
+# carrierwave is used for uploading of images
+gem 'carrierwave'
