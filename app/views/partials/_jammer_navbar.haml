@@ -1,0 +1,33 @@
+- if @display_nav
+	%nav.navbar.navbar-inverse.navbar-fixed-top
+		.container-fluid
+			.navbar-header
+				%button.navbar-toggle{ data: { toggle: "collapse", target: "#jammer-nav" } }
+					%span.sr-only Toggle Nav
+					%span.icon-bar
+					%span.icon-bar
+					%span.icon-bar
+				= link_to "Jammer", root_path, class: "navbar-brand"
+
+			.collapse.navbar-collapse#jammer-nav
+				%ul.nav.navbar-nav
+					%li
+						= link_to "Profile", root_path
+					%li.dropdown
+						%a{href: "#", class: "dropdown-toggle", data: { toggle: "dropdown" } }
+							%span.caret
+						%ul.dropdown-menu
+							%li 1
+							%li 2
+							%li 3
+							%li 4
+				= form_tag("/search", method: :get, class: 'navbar-form navbar-right') do
+					.form-group
+						= text_field_tag :search, "", class: "form-control", placeholder: "Search"
+					= submit_tag "Search", class: "btn btn-info"
+				- if notice || alert
+					%ul.nav.navbar-nav.navbar-right
+						%li 
+							%a#nav_notice=notice
+						%li 
+							%a#nav_alert=alert
