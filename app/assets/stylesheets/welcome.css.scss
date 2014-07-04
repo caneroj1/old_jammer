@@ -87,5 +87,9 @@ a {
 }
 
 hr {
-	border-color: #e5e5e5;
+	border-color: $gray2;
+}
+
+select {
+	border: 1px solid $gray2;
 }

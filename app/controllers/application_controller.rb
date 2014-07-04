@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
   # ensure that the user is logged in before they attempt to do anything
   # before_action :authenticate_user!
 
+  # whenever we are on a devise controller, change the permitted parameters
   before_filter :configure_permitted_parameters, if: :devise_controller?
 
   ## these three methods are necessary to get devise forms on any page
@@ -27,15 +28,18 @@ class ApplicationController < ActionController::Base
   	devise_mapping
   end
 
+  # return a list of US states to be put into select dropdown forms easily
   def state_list
     ["AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA", "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY"]
   end
 
+  # return a list of instruments to be put into select dropdown forms easily
   def instrument_list
     ["Drums", "Guitar", "Bass", "Vocals", "Piano"].sort_by { |u| u.downcase }
   end
 
   protected
+  # specify what other parameters we want devise to accept when a user is signing up
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up) << :first_name << :last_name << :street << :city << :state << :instrument
   end
