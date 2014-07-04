@@ -62,14 +62,30 @@ h1 {
 	background-color: rgba(252, 252, 252, 0.8);
 }
 
-.top-margin {
-	margin-top: 10%;
-}
 
 a {
 	font-size: 16px;
 }
 
-.errors {
+.errors, #error_explanation {
+	text-align: center;
 	color: red;
+	h2 {
+		text-align: center;	
+	}
+	ul {
+		text-align: left;
+	}
+}
+
+.form-group.errors {
+	text-align: left;
+}
+
+.location {
+	padding-left: 0;
+}
+
+hr {
+	border-color: #e5e5e5;
 }

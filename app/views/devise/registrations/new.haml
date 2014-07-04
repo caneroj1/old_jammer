@@ -2,24 +2,42 @@
 	= stylesheet_link_tag 'welcome'
 
 .container-fluid
-	.row.top-margin
-		.col-xs-6.col-xs-offset-3
-			=form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "well well-lg login" }) do |f|
-				%h2.text-center Sign Up
-				= devise_error_messages!
-				.form-group
-					= f.label :first_name
-					= f.text_field :first_name, class: "form-control", autofocus: true
-				.form-group
-					= f.label :last_name
-					= f.text_field :last_name, class: "form-control"
-				.form-group
-					=f.label :email
-					=f.email_field :email, class: "form-control"
-				.form-group
-					=f.label :password
-					=f.password_field :password, autocomplete: "off", class: "form-control"
-				= f.submit 'Sign Up', class: "btn btn-info"
-				= link_to 'Cancel', :back, class: "btn btn-danger"
-				.form-group
-					%p.help-block= render "devise/shared/links"
+	.row
+		.col-xs-6.col-xs-offset-3.login
+			%h2.text-center Sign Up
+			%hr
+			= devise_error_messages!
+			=form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+				.col-xs-5.col-xs-offset-1
+					.form-group
+						= f.label :first_name
+						= f.text_field :first_name, class: "form-control", autofocus: true
+					.form-group
+						= f.label :last_name
+						= f.text_field :last_name, class: "form-control"
+					.form-group
+						=f.label :email
+						=f.email_field :email, class: "form-control"
+					.form-group
+						=f.label :password
+						=f.password_field :password, autocomplete: "off", class: "form-control"
+					= f.submit 'Sign Up', class: "btn btn-info"
+					= link_to 'Cancel', :back, class: "btn btn-danger"
+					.form-group
+						%p.help-block= render "devise/shared/links"
+				.col-xs-5.col-xs-offset-1
+					%p.help-block You don't need to enter your location information, but it would improve searching for nearby musicians.
+					.form-group
+						= f.label :street
+						= f.text_field :street, class: "form-control"
+					.col-xs-8.location
+						.form-group
+							= f.label :city
+							= f.text_field :city, class: "form-control"
+					.col-xs-4.location
+						.form-group
+							= f.label :state
+							= f.select(:state, "world")
+						.form-group
+							= f.label :instrument
+							= f.select(:instrument, @instrument_list)
