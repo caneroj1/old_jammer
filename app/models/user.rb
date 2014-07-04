@@ -8,7 +8,15 @@ class User < ActiveRecord::Base
          :trackable, 
          :validatable
 
-  attr_accessible :first_name, :last_name, :email, :password, :instrument
+  attr_accessible :first_name, 
+                  :last_name, 
+                  :email, 
+                  :password, 
+                  :instrument,
+                  :state,
+                  :city,
+                  :street
 
-  validates :email, uniqueness: true
+  validates :first_name, presence: true
+  validates :last_name, presence: true
 end
