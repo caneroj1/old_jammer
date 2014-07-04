@@ -7,4 +7,10 @@ class UsersController < Devise::RegistrationsController
 		@state_list = state_list
 		super
 	end
+
+	## redirect the current user to musicians#show
+	# to display current user as a musician
+	def profile
+
+	end
 end
