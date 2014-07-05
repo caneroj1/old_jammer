@@ -16,3 +16,4 @@
 //= require jquery
 //= require bootstrap-sprockets
 //= require alerts
+//= require file_upload
