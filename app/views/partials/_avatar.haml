@@ -6,7 +6,7 @@
 		%p.form-helper.text-center
 			You don't have a profile image. Upload one here:
 		.form-group
-			= f.file_field :avatar, class: "form-control avatar"
+			= f.file_field :avatar, class: "form-control avatar", data: {filename_placement: "inside" }
 		= f.submit 'Upload Image', class: "btn btn-info"
 - elsif musician.uploaded
 	.col-xs-6.col-xs-offset-3
