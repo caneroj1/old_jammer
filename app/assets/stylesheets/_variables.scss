@@ -51,16 +51,19 @@
   font-family: 'Fira-Sans-Italic-Heavy';
   font-style: italic;
   font-weight: 700;
- src: font-url('Fira-Sans-Italic-Bold-700.woff') format('woff');
+  src: font-url('Fira-Sans-Italic-Bold-700.woff') format('woff');
 }
 
-$red: red;
+$red: #AA3C39;
+$green: #2D8632;
 $black: #101010;
 $white: #FFF;
 $gray2: #e5e5e5;
-$brand_info: #2D8632;
-$brand_danger: #AA3C39;
+$brand_info: $green;
+$brand_danger: $red;
 $font-family-sans-serif: 'Fira-Sans-Light';
 $headings-font-family: 'Fira-Sans-Light';
 $border-radius-base: 2px;
 $navbar-inverse-link-color: $white;
+$brand-primary: #26596A;
+$well: rgb(223, 223, 223);

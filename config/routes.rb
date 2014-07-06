@@ -5,7 +5,13 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'welcome#index'
-  resources :musicians
+
+  # add a member action for contacting musicians
+  # also there will be a nested resource of messages
+  # that a musician can check
+  resources :musicians do
+    get 'contact', on: :member
+  end 
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
