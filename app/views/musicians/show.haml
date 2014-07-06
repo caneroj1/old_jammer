@@ -3,4 +3,18 @@
 		.col-xs-4.left-info.well
 			%h1.text-center= "#{@musician.first_name} #{@musician.last_name}"
 			= render partial: "partials/avatar", locals: { musician: @musician}
-				
+			.col-xs-8.col-xs-offset-2
+				%hr
+				%ul.list-unstyled
+					%li 
+						%h4 
+							Plays
+							%small=@musician.instrument
+					%li
+						%h4
+							Based at
+							%small="#{@musician.street}, #{@musician.city} #{@musician.state}"
+					%li
+						%h4{class: @musician.lessons?[1]}= @musician.lessons?[0]
+					%li
+						= link_to "Contact #{@musician.first_name}", contact_musician_path(@musician), class: "btn btn-primary btn-block"

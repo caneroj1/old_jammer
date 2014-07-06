@@ -8,9 +8,12 @@ html, body, .container-fluid, .row, .left-info {
 	height: 100%;
 }
 
+.left-info, .content {
+	padding-top: 51px;
+}
+
 .left-info {
 	margin-bottom: 0;
-	padding-top: 51px;
 }
 
 .avatar {
@@ -22,6 +25,18 @@ html, body, .container-fluid, .row, .left-info {
 	height:155px;
 }
 
-.errors {
+.errors, .no-lessons {
 	color: $red;
+}
+
+.yes-lessons {
+	color: $green;
+}
+
+.smoke {
+	background-color: whitesmoke;
+}
+
+.contact {
+	background-color: $well;
 }

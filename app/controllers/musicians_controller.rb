@@ -13,7 +13,7 @@ class MusiciansController < ApplicationController
 		if params[:user][:avatar]
 			@musician.avatar = params[:user][:avatar]
 			@musician.uploaded = true
-		else
+		else # if no image is being uploaded: this is for regular info changing
 			puts "hello"
 		end
 
@@ -23,5 +23,10 @@ class MusiciansController < ApplicationController
 			@musician.uploaded = false if params[:user][:avatar]
 			render 'show'
 		end
+	end
+
+	# this will control the contact process for the musician
+	def contact
+		@musician = User.find_by_id(params[:id])
 	end
 end
