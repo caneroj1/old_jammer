@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   # that a musician can check
   resources :musicians do
     get 'contact', on: :member
+    resources :messages
   end 
 
   # Example of regular route:

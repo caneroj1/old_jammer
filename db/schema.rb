@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140706193834) do
+ActiveRecord::Schema.define(version: 20140707043011) do
 
   create_table "messages", force: true do |t|
     t.datetime "created_at"
@@ -22,6 +22,11 @@ ActiveRecord::Schema.define(version: 20140706193834) do
     t.boolean  "booking_request"
     t.boolean  "jam_request"
     t.integer  "sent_by"
+  end
+
+  create_table "messages_users", id: false, force: true do |t|
+    t.integer "user_id"
+    t.integer "message_id"
   end
 
   create_table "users", force: true do |t|
@@ -50,10 +55,5 @@ ActiveRecord::Schema.define(version: 20140706193834) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-
-  create_table "users_and_messages", id: false, force: true do |t|
-    t.integer "user_id"
-    t.integer "message_id"
-  end
 
 end

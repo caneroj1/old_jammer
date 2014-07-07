@@ -6,12 +6,12 @@ class Message < ActiveRecord::Base
   # or inviting them to a band
 
   # a message belongs to a musician
-  belongs_to :user
+  has_and_belongs_to_many :users
 
   attr_accessible :return_email, # this will be used if whoever is contacting the musician has no account
   								:message_body,
   								:lesson_request,
-  								:jam_reqest,
+  								:jam_request,
   								:booking_request,
   								:sent_by			# this will be the id of the user who sent the message
 
@@ -19,5 +19,5 @@ class Message < ActiveRecord::Base
   validates :lesson_request, presence: true, 	if: "jam_request.nil? && booking_request.nil?"
   validates :jam_request, presence: true, 		if: "lesson_request.nil? && booking_request.nil?"
   validates :booking_request, presence: true, if: "jam_request.nil? && lesson_request.nil?"
-  
+  validates :message_body, presence: true
 end
