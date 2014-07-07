@@ -28,5 +28,9 @@ class MusiciansController < ApplicationController
 	# this will control the contact process for the musician
 	def contact
 		@musician = User.find_by_id(params[:id])
+		@message = Message.new
+
+		# if there is a user signed in, attribute the message made to both musicians
+		@message.sent_by = current_user.id if user_signed_in?
 	end
 end

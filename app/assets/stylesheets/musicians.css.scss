@@ -40,3 +40,7 @@ html, body, .container-fluid, .row, .left-info {
 .contact {
 	background-color: $well;
 }
+
+textarea {
+	resize: vertical;
+}
