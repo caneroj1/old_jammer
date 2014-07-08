@@ -5,11 +5,10 @@
 	left: 0;
 	height: 100%;
 	width: 100%;
-	// background-image: url('http://wallpaperpanda.com/wallpapers/Gi6/eLM/Gi6eLMokT.jpg');
-	background-image: url('http://www.livekaraokeband.co.uk/sites/all/themes/lkb2013/images/background.jpg');
+	background-image: $bg2;
 	background-repeat: no-repeat;
 	background-attachment: fixed;
-	background-size: cover;
+	background-size: 100%;
 	&:before {
 		content: '';
 		position: absolute;
