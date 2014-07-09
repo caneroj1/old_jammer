@@ -32,7 +32,7 @@ class User < ActiveRecord::Base
   # to indicate if the musician gives lessons
   def lessons?
     lessons ? 
-    ["#{first_name} is interested in giving lessons.", "yes-lessons"] : 
-    ["#{first_name} is not interested in giving lessons at this time.", "no-lessons"]
+    ["#{first_name} is interested in giving lessons.", "yes-lessons", true] : 
+    ["#{first_name} is not interested in giving lessons at this time.", "no-lessons", false]
   end
 end

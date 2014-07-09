@@ -3,6 +3,7 @@
 		.col-xs-8.col-xs-offset-2.content
 			.page-header.text-center
 				%h1= "Send #{@musician.first_name} a Message"
+				= link_to "Return to #{@musician.first_name}'s Profile", musician_path(@musician), class: "btn btn-primary"
 			.well.contact
 				= form_for(@message, method: :post, url: musician_messages_path(@musician, @message)) do |f|
 					= hidden_field_tag(:sent_by, @message.sent_by) unless @message.sent_by.nil?
@@ -12,10 +13,11 @@
 							.errors= msg
 					.form-group
 						%h4 What is this message for?
-					.radio
-						%label
-							= radio_button_tag(:request, "lesson")
-							= "I am contacting #{@musician.first_name} for lessons."
+					- if @musician.lessons?[2]
+						.radio
+							%label
+								= radio_button_tag(:request, "lesson")
+								= "I am contacting #{@musician.first_name} for lessons."
 					.radio
 						%label
 							= radio_button_tag(:request, "jam")

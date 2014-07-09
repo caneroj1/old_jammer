@@ -7,7 +7,8 @@
 			You don't have a profile image. Upload one here:
 		.form-group
 			= f.file_field :avatar, class: "form-control avatar", data: {filename_placement: "inside" }
-		= f.submit 'Upload Image', class: "btn btn-info"
+		.col-xs-8.col-xs-offset-2
+			= f.submit 'Upload Image', class: "btn btn-info"
 - elsif musician.uploaded
 	.col-xs-6.col-xs-offset-3
 		= image_tag musician.avatar.url, class: "img-circle"
