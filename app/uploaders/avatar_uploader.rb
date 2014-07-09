@@ -1,9 +1,8 @@
 # encoding: utf-8
 
 class AvatarUploader < CarrierWave::Uploader::Base
-
   # Include RMagick or MiniMagick support:
-  # include CarrierWave::RMagick
+  include CarrierWave::RMagick
   # include CarrierWave::MiniMagick
 
   # Choose what kind of storage to use for this uploader:
@@ -25,8 +24,9 @@ class AvatarUploader < CarrierWave::Uploader::Base
   # end
 
   # Process files as they are uploaded:
-  # process :scale => [200, 300]
-  #
+  process :resize_to_fill => [140, 140] # resize to fit 140x140
+  process :convert => 'png'             # convert to png
+  
   # def scale(width, height)
   #   # do something
   # end
@@ -44,8 +44,8 @@ class AvatarUploader < CarrierWave::Uploader::Base
 
   # Override the filename of the uploaded files:
   # Avoid using model.id or version_name here, see uploader/store.rb for details.
-  # def filename
-  #   "something.jpg" if original_filename
-  # end
+  def filename
+    super.chomp(File.extname(super)) + '.png' if original_filename.present?
+  end
 
 end

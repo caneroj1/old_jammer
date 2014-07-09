@@ -20,7 +20,9 @@ class User < ActiveRecord::Base
                   :state,
                   :city,
                   :street,
-                  :lessons
+                  :lessons,
+                  :genres,
+                  :statement
 
   validates :first_name,  presence: true
   validates :last_name,   presence: true
