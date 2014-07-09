@@ -22,7 +22,9 @@ class User < ActiveRecord::Base
                   :street,
                   :lessons,
                   :genres,
-                  :statement
+                  :statement,
+                  :reset_password_token,
+                  :password_confirmation
 
   validates :first_name,  presence: true
   validates :last_name,   presence: true

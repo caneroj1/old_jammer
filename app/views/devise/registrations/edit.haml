@@ -10,7 +10,7 @@
           =f.email_field :email, class: "form-control", :placeholder => current_user.email, :value => ""
         =f.submit "Update Email", class: "btn btn-primary btn-block"
       %hr
-      = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| 
+      = form_for(resource, as: resource_name, url: password_change_path, html: { method: :put }) do |f| 
         = f.hidden_field :reset_password_token 
 
         .form-group

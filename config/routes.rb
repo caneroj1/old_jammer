@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: "users" }
+  
+  devise_scope :user do
+    put '/users/update_password', to: "users#update_password", as: :password_change
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
