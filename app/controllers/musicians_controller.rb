@@ -7,17 +7,20 @@ class MusiciansController < ApplicationController
 		respond_with @musician
 	end
 
+	def edit
+		enable_devise
+	end
+
 	def update
 		@musician = User.find_by_id(current_user)
 		params[:user] ||= {}
 		params[:user][:avatar] ||= "nothing"
 
 		# check if an image is being uploaded
+		# all other updating is handled by devise
 		if !params[:user][:avatar].eql?("nothing")
 			@musician.avatar = params[:user][:avatar]
 			@musician.uploaded = true
-		else # if no image is being uploaded: this is for regular info changing
-			puts "hello"
 		end
 
 		if @musician.save

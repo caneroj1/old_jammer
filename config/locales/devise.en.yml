@@ -64,5 +64,5 @@ en:
       not_found: "not found"
       not_locked: "was not locked"
       not_saved:
-        one: "There was 1 error creating your account:"
-        other: "We're sorry.. There were some problems creating your account."
+        one: "There was 1 error saving that information:"
+        other: "We're sorry.. There were some problems saving your info."
