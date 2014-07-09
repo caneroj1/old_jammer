@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140707043011) do
+ActiveRecord::Schema.define(version: 20140708201134) do
 
   create_table "messages", force: true do |t|
     t.datetime "created_at"
@@ -50,7 +50,7 @@ ActiveRecord::Schema.define(version: 20140707043011) do
     t.string   "state"
     t.string   "avatar"
     t.boolean  "uploaded",               default: false
-    t.boolean  "lessons"
+    t.boolean  "lessons",                default: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

@@ -9,8 +9,10 @@ class MusiciansController < ApplicationController
 
 	def update
 		@musician = User.find_by_id(current_user)
+		params[:user] ||= {}
+
 		# check if an image is being uploaded
-		if params[:user][:avatar]
+		if !params[:user][:avatar].eql?("nothing")
 			@musician.avatar = params[:user][:avatar]
 			@musician.uploaded = true
 		else # if no image is being uploaded: this is for regular info changing

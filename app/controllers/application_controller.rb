@@ -35,7 +35,8 @@ class ApplicationController < ActionController::Base
 
   # return a list of instruments to be put into select dropdown forms easily
   def instrument_list
-    ["Drums", "Guitar", "Bass", "Vocals", "Piano"].sort_by { |u| u.downcase }
+    ["Drums", "Electric Guitar", "Acoustic Guitar", "Bass", "Vocals", "Piano", "Alto Saxophone", "Tenor Saxophone", "Soprano Saxophone",
+    "Baritone Saxophone", "Flute", "Violin", "Viola", "Cello"].sort_by { |u| u.downcase }
   end
 
   protected
