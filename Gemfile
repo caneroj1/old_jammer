@@ -52,3 +52,5 @@ gem 'protected_attributes'
 gem 'awesome_print'
 # carrierwave is used for uploading of images
 gem 'carrierwave'
+# for initial image processing when uploading profile pics
+gem 'rmagick', require: false 
