@@ -1,5 +1,5 @@
 class MusiciansController < ApplicationController
-	respond_to :html
+	respond_to :html, :js
 
 	# get the user object as specified by the id in params
 	def show
@@ -12,13 +12,24 @@ class MusiciansController < ApplicationController
 	end
 
 	def update
-		@musician = User.find_by_id(current_user)
-		params[:user] ||= {}
-		params[:user][:avatar] ||= "nothing"
+		@musician = User.find_by_id(params[:id])
 
-		# check if an image is being uploaded
-		# all other updating is handled by devise
-		if !params[:user][:avatar].eql?("nothing")
+		# is the user changing their lesson giving status?
+		if params[:user].key?(:lessons)
+			@musician.lessons = params[:user][:lessons]
+		end
+
+		if @musician.save
+			redirect_to '/users/edit'
+		else
+			render '/users/edit'
+		end
+	end
+
+	## upload a profile picture
+	def upload
+		@musician = User.find_by_id(current_user)
+		if !params[:user].nil?
 			@musician.avatar = params[:user][:avatar]
 			@musician.uploaded = true
 		end

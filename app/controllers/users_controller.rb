@@ -1,4 +1,5 @@
 class UsersController < Devise::RegistrationsController
+  # respond_to :html, :js
 
 	## override the new/create methods for a registration controller in order
 	# to pass new instance variables to the view
@@ -15,7 +16,12 @@ class UsersController < Devise::RegistrationsController
 	end
 
 	def edit
-		render :edit
+    @musician = User.find_by_id(current_user)
+		respond_to do |format|
+      puts "in the respond to: #{format.inspect}"
+      format.html { render :edit }
+      format.js {}
+    end
 	end
 
 	def update
