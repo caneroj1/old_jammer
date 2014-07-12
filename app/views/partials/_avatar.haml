@@ -1,5 +1,5 @@
 - if musician.id.eql?(current_user.id) && !musician.uploaded
-	= form_for musician, url: musician_path(musician), method: :patch, html: { multipart: true } do |f|
+	= form_for musician, url: upload_musician_path(musician), method: :post, html: { multipart: true } do |f|
 		- if musician.errors.any?
 			- musician.errors.values.each do |m|
 				.form-group.errors= m[0]

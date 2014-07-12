@@ -8,6 +8,10 @@ html, body, .container-fluid, .row, .left-info {
 	height: 100%;
 }
 
+body {
+	background-color: rgba(75, 75, 75, 0.15);
+}
+
 .left-info, .content {
 	padding-top: 51px;
 }
@@ -54,4 +58,8 @@ html, body, .container-fluid, .row, .left-info {
 
 textarea {
 	resize: vertical;
+}
+
+select {
+	border: 1px solid $gray2;
 }

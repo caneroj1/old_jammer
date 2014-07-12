@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   # that a musician can check
   resources :musicians do
     get 'contact', on: :member
+    post 'upload', on: :member
     resources :messages
   end 
 
