@@ -31,6 +31,10 @@
 							= "I am contacting #{@musician.first_name} for a booking request."
 					%br
 					.form-group
+						%h4 Subject
+						= f.text_field(:subject, value: @message.subject.nil? ? "" : @message.subject, class: "form-control")
+					%br
+					.form-group
 						%h4 What do you have to say?
 						= f.text_area(:message_body, value: @message.message_body.nil? ? "" : @message.message_body, size: "24x6", class: "form-control", placeholder: "Let it all out")
 					- if @message.sent_by.nil?

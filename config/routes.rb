@@ -15,8 +15,11 @@ Rails.application.routes.draw do
   # also there will be a nested resource of messages
   # that a musician can check
   resources :musicians do
-    get 'contact', on: :member
-    post 'upload', on: :member
+    member do
+      get 'contact'
+      get 'messages'
+      post 'upload'
+    end
     resources :messages
   end 
 

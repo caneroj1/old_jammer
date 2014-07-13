@@ -1,0 +1,8 @@
+.container-fluid
+	.row
+		.col-xs-4.left-info.well
+			%h1.text-center Messages
+			%ul.list-unstyled
+				- @messages.each do |msg|
+					%li.text-center
+						%h3= msg.subject.nil? ? "Subject" : msg.subject

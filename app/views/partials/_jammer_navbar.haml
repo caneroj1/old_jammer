@@ -17,10 +17,14 @@
 						%a{href: "#", class: "dropdown-toggle", data: { toggle: "dropdown" } }
 							%span.caret
 						%ul.dropdown-menu
-							%li 1
-							%li 2
-							%li 3
-							%li 4
+							%li 
+								= link_to "Messages", messages_musician_path(current_user)
+							%li 
+								%a Songs
+							%li 
+								%a Videos
+							%li 
+								%a Booking
 				= form_tag("/search", method: :get, class: 'navbar-form navbar-right') do
 					.form-group
 						= text_field_tag :search, "", class: "form-control", placeholder: "Search"
