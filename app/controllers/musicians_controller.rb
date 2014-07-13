@@ -73,6 +73,12 @@ class MusiciansController < ApplicationController
 		puts @message.booking_request.nil?
 	end
 
+	# this will display all of the user's messages
+	def messages
+		@musician = User.find_by_id(params[:id])
+		@messages = @musician.messages
+	end
+
 	private
 	def process_genres
 		# clear the genres key and value pair that was a hidden field from the form

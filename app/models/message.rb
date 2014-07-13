@@ -9,6 +9,7 @@ class Message < ActiveRecord::Base
   has_and_belongs_to_many :users
 
   attr_accessible :return_email, # this will be used if whoever is contacting the musician has no account
+                  :subject,
   								:message_body,
   								:lesson_request,
   								:jam_request,
@@ -20,4 +21,15 @@ class Message < ActiveRecord::Base
   validates :jam_request, presence: true, 		if: "lesson_request.nil? && booking_request.nil?"
   validates :booking_request, presence: true, if: "jam_request.nil? && lesson_request.nil?"
   validates :message_body, presence: true
+  validates :subject, presence: true
+
+  def first_names
+    str = ''
+    users.each { |u| str << u.first_name << " " }
+    str.strip.split(" ").join(', ')
+  end
+
+  def uid(id)
+    users.find_index { |u| u.id.eql?(id)}
+  end
 end
