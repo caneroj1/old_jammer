@@ -69,6 +69,8 @@ class MusiciansController < ApplicationController
 
 		# if there is a user signed in, attribute the message made to both musicians
 		@message.sent_by = current_user.id if user_signed_in?
+		puts @message.inspect
+		puts @message.booking_request.nil?
 	end
 
 	private
