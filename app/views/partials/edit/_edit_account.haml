@@ -11,13 +11,13 @@
     = f.hidden_field :reset_password_token 
     .form-group
       = f.label :password, "New Password" 
-      = f.password_field :password, autocomplete: "off", class: "form-control"
+      = f.password_field :password, autocomplete: "off", class: "form-control", id: :new
 
     .form-group
       = f.label :password_confirmation, "Confirm New Password" 
-      = f.password_field :password_confirmation, autocomplete: "off", class: "form-control" 
+      = f.password_field :password_confirmation, autocomplete: "off", class: "form-control", id: :confirm 
 
-    = f.submit "Change Password", class: "btn btn-primary btn-block" 
+    = f.submit "Change Password", class: "btn btn-primary btn-block", id: :sub_pass
   %hr
   %h3 Unhappy with Jammer?    
   =button_to "Cancel My Account", registration_path(resource_name), data: {confirm: "Are you sure?" }, method: :delete, class: "btn btn-danger btn-block"
