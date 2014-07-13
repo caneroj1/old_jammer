@@ -40,4 +40,10 @@ class User < ActiveRecord::Base
     ["#{first_name} is interested in giving lessons.", "yes-lessons", true] : 
     ["#{first_name} is not interested in giving lessons at this time.", "no-lessons", false]
   end
+
+  # this function will take the genres associated with this user
+  # and return a neat, comma-delimited list with capitalized words
+  def neat_genres
+    genres.split(',').delete_if { |word| word.eql?("") || word.eql?(" ") }.join(', ')
+  end
 end

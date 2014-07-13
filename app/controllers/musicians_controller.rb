@@ -77,11 +77,11 @@ class MusiciansController < ApplicationController
 		params[:user][:genres] = ""
 
 		# concatenate the genres value with whatever genres the user has submitted, space delimited
-		params[:user][:genres] << params[:user][:g1] << " " unless params[:user][:g1].nil?
-		params[:user][:genres] << params[:user][:g2] << " " unless params[:user][:g2].nil? 
-		params[:user][:genres] << params[:user][:g3] << " " unless params[:user][:g3].nil? 
-		params[:user][:genres] << params[:user][:g4] << " " unless params[:user][:g4].nil? 
-		params[:user][:genres] << params[:user][:g5] << " " unless params[:user][:g5].nil? 
+		params[:user][:genres] << params[:user][:g1] << "," unless params[:user][:g1].nil?
+		params[:user][:genres] << params[:user][:g2] << "," unless params[:user][:g2].nil? 
+		params[:user][:genres] << params[:user][:g3] << "," unless params[:user][:g3].nil? 
+		params[:user][:genres] << params[:user][:g4] << "," unless params[:user][:g4].nil? 
+		params[:user][:genres] << params[:user][:g5] << "," unless params[:user][:g5].nil? 
 	end
 
 	# split the result of process_genres by space and loop through them
