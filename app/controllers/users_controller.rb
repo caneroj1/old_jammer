@@ -18,7 +18,6 @@ class UsersController < Devise::RegistrationsController
 	def edit
     @musician = User.find_by_id(current_user)
 		respond_to do |format|
-      puts "in the respond to: #{format.inspect}"
       format.html { render :edit }
       format.js {}
     end

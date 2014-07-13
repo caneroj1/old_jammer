@@ -1,0 +1,10 @@
+%h3 
+	Interested in giving lessons? 
+%p
+	Giving lessons is really cool, but sometimes it's pretty hard to connect students to teachers. By checking the following, everyone will see that you're willing to give lessons!
+= form_for(@musician, url: musician_path(@musician), method: :patch, remote: true, html: { id: :lesson }) do |f|
+	.form-group
+		= f.label :give_lessons?
+		= f.select(:lessons, [["Sure!", true], ["No Way!", false]], selected: nil, class: "form-control")
+	.form-group
+		= f.submit "Update", class: "btn btn-primary"

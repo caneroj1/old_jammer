@@ -1,0 +1,8 @@
+%h3 Got a personal statement?
+%p Feel free to tell everyone a little bit about yourself.
+= form_for(@musician, url: musician_path(@musician), method: :patch, remote: true, html: { id: "statement" }) do |f|
+	.form-group
+		= f.label :statement
+		= f.text_area :statement, class: "form-control", size: "24x6"
+	.form-group
+		= f.submit "Update", class: "btn btn-primary"

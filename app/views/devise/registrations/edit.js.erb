@@ -1,0 +1,15 @@
+<% if params[:updated].eql?("lessons") %>
+	<% if @musician.lessons?[2] %>
+		$("#lesson").before("<p class='text-success yes'>Your profile now reflects your interest in giving lessons.</p>")
+		$(".yes").fadeOut(6000)
+	<% else %>
+		$("#lesson").before("<p class='text-danger no'>Your profile no longer displays your interest in giving lessons.</p>")
+		$(".no").fadeOut(6000)
+	<% end %>
+<% elsif params[:updated].eql?("statement") %>
+	$("#statement").before("<p class='text-success state'>Your statement has been successfully updated.</p>")
+	$(".state").fadeOut(6000)
+<% elsif params[:updated].eql?("genres") %>
+	$("#genres").before("<p class='text-success genres'>Your genres have been successfully updated.</p>")
+	$(".genres").fadeOut(6000)
+<% end %>

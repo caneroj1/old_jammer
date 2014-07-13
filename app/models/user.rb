@@ -24,7 +24,8 @@ class User < ActiveRecord::Base
                   :genres,
                   :statement,
                   :reset_password_token,
-                  :password_confirmation
+                  :password_confirmation,
+                  :g1, :g2, :g3, :g4, :g5
 
   validates :first_name,  presence: true
   validates :last_name,   presence: true

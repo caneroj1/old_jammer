@@ -1,6 +1,6 @@
 = render template: "layouts/application"
-= render partial: "partials/sign_up_form", locals: { sign_up_name: "sign_up" }
-= render partial: "partials/log_in_form", locals: { log_in_name: "log_in" }
+= render partial: "partials/homepage/sign_up_form", locals: { sign_up_name: "sign_up" }
+= render partial: "partials/homepage/log_in_form", locals: { log_in_name: "log_in" }
 	
 = stylesheet_link_tag "welcome"
 = javascript_include_tag "welcome"
