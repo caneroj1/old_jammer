@@ -2,7 +2,7 @@
 	.row
 		.col-xs-4.left-info.well
 			%h1.text-center= "#{@musician.first_name} #{@musician.last_name}"
-			= render partial: "partials/avatar", locals: { musician: @musician}
+			= render partial: "partials/musician/avatar", locals: { musician: @musician}
 			.col-xs-8.col-xs-offset-2
 				%hr
 				%ul.list-unstyled
