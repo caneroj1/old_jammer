@@ -6,7 +6,7 @@
 				= link_to "Return to #{@musician.first_name}'s Profile", musician_path(@musician), class: "btn btn-primary"
 			.well.contact
 				= form_for(@message, method: :post, url: musician_messages_path(@musician, @message)) do |f|
-					= hidden_field_tag(:sent_by, @message.sent_by) unless @message.sent_by.nil?
+					= f.hidden_field(:sent_by, value: @message.sent_by) unless @message.sent_by.nil?
 					- if @message.errors.any?
 						%h2.errors We're sorry, we can't send that message.
 						- @message.errors.full_messages.each do |msg|
@@ -16,20 +16,23 @@
 					- if @musician.lessons?[2]
 						.radio
 							%label
-								= radio_button_tag(:request, "lesson")
+								= radio_button_tag(:request, "lesson") if @message.lesson_request.nil?
+								= radio_button_tag(:request, "lesson", checked: true) if !@message.lesson_request.nil?
 								= "I am contacting #{@musician.first_name} for lessons."
 					.radio
 						%label
-							= radio_button_tag(:request, "jam")
+							= radio_button_tag(:request, "jam") if @message.jam_request.nil?
+							= radio_button_tag(:request, "jam", checked: true) if !@message.jam_request.nil?
 							= "I am contacting #{@musician.first_name} because I would like to jam."
 					.radio
 						%label
-							= radio_button_tag(:request, "booking")
+							= radio_button_tag(:request, "booking") if @message.booking_request.nil?
+							= radio_button_tag(:request, "booking", checked: true) if !@message.booking_request.nil?
 							= "I am contacting #{@musician.first_name} for a booking request."
 					%br
 					.form-group
 						%h4 What do you have to say?
-						= text_area_tag(:message_body, "", size: "24x6", class: "form-control", placeholder: "Let it all out")
+						= f.text_area(:message_body, value: @message.message_body.nil? ? "" : @message.message_body, size: "24x6", class: "form-control", placeholder: "Let it all out")
 					- if @message.sent_by.nil?
 						%br
 						.form-group

@@ -3,17 +3,11 @@ class MessagesController < ApplicationController
 ## the create method for the message
 # it will handle the processing from the contact form
 def create
-	@message = Message.new
 	@musician = User.find_by_id(params[:musician_id])
+	@message = Message.create(params[:message])
 
-	## determine to whom the message belongs
-	# if there is a sent_by field, that means it came from an active user
-	# else it is from someone without an account
-	if params[:sent_by]
-		@message.sent_by = params[:sent_by]
-	else
-		@message.sent_by = params[:return_email]
-	end
+	# if the request is sent from a logged in user
+	sender = User.find(params[:message][:sent_by]) if params[:message][:sent_by]
 
 	## fill in the request type of the message
 	case params[:request]
@@ -24,10 +18,13 @@ def create
 	when "booking"
 		@message.booking_request = true
 	end
-		
-	@message.message_body = params[:message_body]
+	
+	## if the message is saved, redirect to the profile of the
+	# musician to whom the message was sent
 	if @message.save
-		redirect_to musician_path(params[:musician_id])
+		@musician.messages << @message
+		sender.messages << @message unless sender.nil?
+		redirect_to musician_path(@musician)
 	else
 		if @message.errors.messages.keys.include?(:lesson_request)
 			@message.errors.delete(:lesson_request)
