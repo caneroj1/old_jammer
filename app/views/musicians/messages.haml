@@ -4,5 +4,12 @@
 			%h1.text-center Messages
 			%ul.list-unstyled
 				- @messages.each do |msg|
-					%li.text-center
-						%h3= msg.subject.nil? ? "Subject" : msg.subject
+					%li.text-center.msg-info-row
+						%table
+							%tr
+								%td.left-cell
+									%h3.subject= msg.subject.nil? ? "Subject" : msg.subject
+									%p.sender= msg.sender
+									%p.date= msg.created_at
+								%td.msg-pic= image_tag msg.sender_picture, class: "img-circle msg-pic"
+						

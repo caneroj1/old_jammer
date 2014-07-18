@@ -32,4 +32,14 @@ class Message < ActiveRecord::Base
   def uid(id)
     users.find_index { |u| u.id.eql?(id)}
   end
+
+  def sender
+    user = User.find_by_id(sent_by)
+    "#{user.first_name} #{user.last_name}"
+  end
+
+  def sender_picture
+    user = User.find_by_id(sent_by)
+    user.uploaded ? user.avatar.url : image_url("no_avatar.png")
+  end
 end
