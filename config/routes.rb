@@ -16,11 +16,15 @@ Rails.application.routes.draw do
   # that a musician can check
   resources :musicians do
     member do
+      # get 'show_message'
       get 'contact'
       get 'messages'
       post 'upload'
     end
-    resources :messages
+    resources :messages do
+      get '/show_message', to: "messages#show_message", on: :member
+      get '/get_message', to: "messages#get_message", on: :member
+    end
   end 
 
   # Example of regular route:
