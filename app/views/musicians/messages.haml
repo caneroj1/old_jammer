@@ -1,6 +1,6 @@
 .container-fluid
 	.row
-		.col-xs-4.left-info.well
+		.col-xs-4.left-info.well#before-message
 			%h1.text-center Messages
 			%ul.list-unstyled
 				- @messages.each do |msg|
@@ -8,8 +8,10 @@
 						%table
 							%tr
 								%td.left-cell
-									%h3.subject= msg.subject.nil? ? "Subject" : msg.subject
-									%p.sender= msg.sender
-									%p.date= msg.created_at
+									%h3.subject= link_to msg.subject.nil? ? "Subject" : msg.subject, messages_musician_path(@musician, m: 12)
+									%p.sender= "From: #{msg.sender}"
+									%p.date= "Sent: #{msg.created_at.strftime("%d/%-m/%Y")}"
 								%td.msg-pic= image_tag msg.sender_picture, class: "img-circle msg-pic"
-						
+		.col-xs-8.left-info
+			- if @message
+				= render partial: "partials/message/message"

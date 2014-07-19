@@ -42,4 +42,8 @@ class Message < ActiveRecord::Base
     user = User.find_by_id(sent_by)
     user.uploaded ? user.avatar.url : image_url("no_avatar.png")
   end
+
+  def type?
+    lesson_request.nil? ? jam_request.nil? ? booking_request.nil? ? "No Type" : "Booking Request" : "Jam Request" : "Lesson Request"
+  end
 end
