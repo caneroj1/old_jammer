@@ -35,4 +35,9 @@ class MessagesController < ApplicationController
 			render "musicians/contact"
 		end
 	end
+
+	def get_message
+		@message = Message.find_by_id(params[:m_id])
+		render partial: "partials/message/message", locals: { message: @message }
+	end
 end

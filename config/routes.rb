@@ -22,7 +22,6 @@ Rails.application.routes.draw do
       post 'upload'
     end
     resources :messages do
-      get '/show_message', to: "messages#show_message", on: :member
       get '/get_message', to: "messages#get_message", on: :member
     end
   end 

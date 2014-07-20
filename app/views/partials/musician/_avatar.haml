@@ -9,9 +9,6 @@
 			= f.file_field :avatar, class: "form-control avatar", data: {filename_placement: "inside" }
 		.col-xs-8.col-xs-offset-2
 			= f.submit 'Upload Image', class: "btn btn-primary btn-block"
-- elsif musician.uploaded
-	.col-xs-6.col-xs-offset-3
-		= image_tag musician.avatar.url, class: "img-circle"
 - else
 	.col-xs-6.col-xs-offset-3
-		= image_tag image_url("no_avatar.png"), class: "img-circle"
+		= image_tag musician.avatar_url, class: "img-circle"
