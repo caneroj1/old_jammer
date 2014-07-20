@@ -46,4 +46,10 @@ class User < ActiveRecord::Base
   def neat_genres
     genres.split(',').delete_if { |word| word.eql?("") || word.eql?(" ") }.join(', ')
   end
+
+  # returns the right url to be used as the user's avatar
+  # it will either be their uploaded profile picture of the default
+  def avatar_url
+    uploaded ? avatar.url : "/assets/no_avatar.png"
+  end
 end

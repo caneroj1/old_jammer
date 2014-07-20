@@ -101,4 +101,33 @@ table {
 	height: 60%;
 	border: 1px solid #EBEBEB;
 	overflow: scroll;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.reply-pic {
+	width: 60px;
+	height: 60px;
+}
+
+.left {
+	margin-right: 10px;
+
+}
+
+.right {
+	margin-left: 10px;
+}
+
+.reply-l, .reply-r {
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+.reply-l {
+	text-align: left;
+}
+
+.reply-r {
+	text-align: right;
 }
