@@ -2,16 +2,38 @@
 	.row
 		.col-xs-4.left-info.well#before-message
 			%h1.text-center Messages
-			%ul.list-unstyled
-				- @messages.each do |msg|
-					%li.text-center.msg-info-row
-						%table
-							%tr
-								%td.left-cell
-									%h3.subject= link_to msg.subject.nil? ? "Subject" : msg.subject, messages_musician_path(@musician, m: 12)
-									%p.sender= "From: #{msg.sender}"
-									%p.date= "Sent: #{msg.created_at.strftime("%d/%-m/%Y")}"
-								%td.msg-pic= image_tag msg.sender_picture, class: "img-circle msg-pic"
+			%ul.nav.nav-pills.nav-justified
+				%li.active
+					%a{href: "#sent", data: { toggle: :tab } } Sent
+				%li
+					%a{href: "#received", data: { toggle: :tab } } Received
+			%hr
+			.tab-content
+				.tab-pane.active#sent
+					%ul.list-unstyled
+						- sent_arr = @messages.select{ |m| m.sent_by.eql?(current_user.id) }.each do |msg|
+							%li.text-center.msg-info-row
+								%table
+									%tr
+										%td.left-cell
+											%h3.subject= link_to msg.subject.nil? ? "Subject Blank" : msg.subject, messages_musician_path(@musician, m_id: msg.id)
+											%p.date= "Sent: #{msg.created_at.strftime("%l:%M")} on #{msg.created_at.strftime("%d/%-m/%Y")}"
+										%td.msg-pic= image_tag msg.sender_picture, class: "img-circle msg-pic"
+						- if sent_arr.count.eql? 0
+							%h5 You have not sent any messages.
+				.tab-pane#received
+					%ul.list-unstyled
+						- rec_arr = @messages.select{ |m| !m.sent_by.eql?(current_user.id) }.each do |msg|
+							%li.text-center.msg-info-row
+								%table
+									%tr
+										%td.left-cell
+											%h3.subject= link_to msg.subject.nil? ? "Subject Blank" : msg.subject, messages_musician_path(@musician, m_id: msg.id)
+											%p.sender= "From: #{msg.sender}"
+											%p.date= "Sent: #{msg.created_at.strftime("%d/%-m/%Y")}"
+										%td.msg-pic= image_tag msg.sender_picture, class: "img-circle msg-pic"
+						- if rec_arr.count.eql? 0
+							%h5 You have not received any messages.
 		.col-xs-8.left-info
 			- if @message
 				= render partial: "partials/message/message"

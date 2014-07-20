@@ -23,27 +23,38 @@ class Message < ActiveRecord::Base
   validates :message_body, presence: true
   validates :subject, presence: true
 
+  # returns an array of first names of the users associated with this
+  # message
   def first_names
     str = ''
     users.each { |u| str << u.first_name << " " }
     str.strip.split(" ").join(', ')
   end
 
+  # returns index of the user in the array with the passed in id
   def uid(id)
     users.find_index { |u| u.id.eql?(id)}
   end
 
+  # returns the name of the user who sent the message
   def sender
     user = User.find_by_id(sent_by)
     "#{user.first_name} #{user.last_name}"
   end
 
+  # returns the url to the avatar of the sender
   def sender_picture
     user = User.find_by_id(sent_by)
-    user.uploaded ? user.avatar.url : image_url("no_avatar.png")
+    user.avatar_url
   end
 
+  # returns the type of message
   def type?
     lesson_request.nil? ? jam_request.nil? ? booking_request.nil? ? "No Type" : "Booking Request" : "Jam Request" : "Lesson Request"
+  end
+
+  # returns the user who sent the message
+  def receiver
+    users[0].id.eql?(sent_by) ? users[1] : users[0]
   end
 end
