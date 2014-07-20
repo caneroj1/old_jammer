@@ -8,4 +8,11 @@
 		=@message.message_body
 	.col-xs-offset-2.col-xs-9.reply-r
 		=image_tag @message.receiver.avatar_url, class: "img-circle reply-pic left"
-
+.col-xs-10.col-xs-offset-1.respond
+	%form
+		.input-group.add-on
+			%textarea{type: :text, class: "form-control reply-contents"}
+			.input-group-btn
+				%button{type: :submit, class: "btn btn-info reply-send"}
+					Send
+					%span.glyphicon.glyphicon-send

@@ -72,15 +72,9 @@ class MusiciansController < ApplicationController
 	end
 
 	# this will display all of the user's messages
-	# if a javascript request is received, it loads the desired message then displays it on the page
 	def messages
 		@musician = User.find_by_id(params[:id])
 		@messages = @musician.messages
-		@message = Message.find_by_id(params[:m_id]) unless params[:m_id].nil?
-		respond_to do |format|
-			format.html {}
-			format.js {}
-		end
 	end
 
 	private

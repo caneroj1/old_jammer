@@ -2,11 +2,14 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-$ ->
-	# redo the file select buttons to be more inline with the theme of the site
-	$('input[type=file]').bootstrapFileInput();
-	do buttons
-	setInterval(password_check, 100)
+## this function will use the data attribute on a message link to get the correct page content.
+# effectively, we make a get request to the messages controller in order to return the partial
+# corresponding to the desired message. we then append this in the right column of the messages page.
+get_message = ->
+	message_id = $(this).data("id")
+	url = "/musicians/11/messages/9/get_message?m_id=" + message_id
+	$.get(url, (data) ->
+		$('#message-pane').html(data))
 
 ## do not allow the user to submit a blank password form
 password_check = ->
@@ -31,3 +34,11 @@ buttons = ->
 				</div>')
 		if forms == 6
 			$('#add').after('<p class="text-danger" id="genre-fill">You can only add 5 genres at a time.</p>')
+
+
+$ ->
+	# redo the file select buttons to be more inline with the theme of the site
+	$('input[type=file]').bootstrapFileInput();
+	do buttons
+	setInterval(password_check, 100)
+	$('.msg-link').on 'click', get_message
