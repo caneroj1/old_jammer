@@ -32,11 +32,11 @@ get_message = ->
 			}).done( ->
 				alert 'king'
 				$.get(get_url, (data) ->
-					$('#replies').append(data))
+					$('.replies').append(data))
 			).fail( ->
 				alert 'no good'
 				$.get(get_url, (data) ->
-					$('#replies').append(data))
+					$('.replies').append(data))
 			)
 			false
 
