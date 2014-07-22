@@ -48,8 +48,8 @@ class MessagesController < ApplicationController
 	# this will return the reply in neatly formatted haml
 	# package that can simply be appended to the list of replies
 	# on the message page
-	def get_last_reply
+	def get_reply
 		message = Message.find_by_id(params[:m_id])
-		render :partial => "partials/replies/reply", locals: { message: message, reply: message.replies.last }
+		render partial: "partials/replies/reply", locals: { message: message, reply: message.replies.last }
 	end
 end

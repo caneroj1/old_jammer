@@ -4,5 +4,4 @@ class Reply < ActiveRecord::Base
 
 	attr_accessible :sent_by,
 									:reply_body
-									
 end
