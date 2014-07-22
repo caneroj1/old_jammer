@@ -8,8 +8,7 @@ class RepliesController < ApplicationController
 		reply = @message.replies.new(params[:reply])
 		reply.save
 		respond_to do |format|
-		  format.js
-		  format.html
+			format.json { render json: "Success!", status: :ok }
 		end
 	end
 end

@@ -17,12 +17,12 @@
 				%td
 					=message.message_body
 .col-xs-10.col-xs-offset-1.respond
-	= form_for(reply, url: create_reply_musician_message_path(current_user.id, message), method: :post, remote: true) do |f|
+	%form#reply-send-form
 		.input-group.add-on
-			= f.text_area(:reply_body, value: "", class: "form-control reply-contents")
-			= f.hidden_field(:sent_by, value: current_user.id)
-			= f.hidden_field(:message_id, value: message.id)
+			%textarea{type: :text, class: "form-control reply-contents", id: 'reply-body'}
 			.input-group-btn
-				= button_tag(class: "btn btn-info reply-send", id: "reply-button") do
+				%button{type: :submit, class: "btn btn-info reply-send", id: "reply-submit"}
 					Send
 					%span.glyphicon.glyphicon-send
+%p#user-id.hidden= current_user.id
+%p#message-id.hidden= message.id

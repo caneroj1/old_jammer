@@ -10,13 +10,35 @@ get_message = ->
 	musician_id = $('#musician_id').data("id")
 	url = "/musicians/" + musician_id + "/messages/" + message_id + "/get_message?m_id=" + message_id
 	$.get(url, (data) ->
-		$('#message-pane').html(data))
+		$('#message-pane').html(data)
+	).done ->
+		$('#reply-send-form').submit ->
+			message_id = $('#message-id').text()
+			musician_id = $('#musician_id').data("id")
 
-send_reply = ->
-	# musician_id = $('#musician_id').data("id")
-	# url = "/musicians/" + musician_id + "/messages/" + @message.id + "/get_reply?m_id=" + @message.id
-	$.get(url = "/musicians/" + $('#musician_id').data("id") + "/messages/" + @message.id + "/get_reply?m_id=" + @message.id, (data) ->
-		$('.replies').append(data))
+			post_url = "/musicians/" + musician_id + "/messages/" + message_id + "/create_reply"
+			message_body = $('#reply-body').val()
+
+			get_url = "/musicians/" + musician_id + "/messages/" + message_id + "/get_reply?m_id=" + message_id
+			$.ajax({
+				type: "POST"
+				url: post_url
+				data: 
+					reply: 
+						reply_body: message_body
+						sent_by: musician_id
+						message_id: message_id
+				dataType: "json"
+			}).done( ->
+				alert 'king'
+				$.get(get_url, (data) ->
+					$('#replies').append(data))
+			).fail( ->
+				alert 'no good'
+				$.get(get_url, (data) ->
+					$('#replies').append(data))
+			)
+			false
 
 ## do not allow the user to submit a blank password form
 password_check = ->
