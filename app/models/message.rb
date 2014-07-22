@@ -7,6 +7,8 @@ class Message < ActiveRecord::Base
 
   # a message belongs to a musician
   has_and_belongs_to_many :users
+  # a message has many replies. 
+  has_many :replies
 
   attr_accessible :return_email, # this will be used if whoever is contacting the musician has no account
                   :subject,
@@ -56,5 +58,11 @@ class Message < ActiveRecord::Base
   # returns the user who sent the message
   def receiver
     users[0].id.eql?(sent_by) ? users[1] : users[0]
+  end
+
+  # returns the url to the avatar of the receiver of the message
+  def receiver_picture
+    user = users.select { |user| !user.id.eql?(sent_by) }.first
+    user.avatar_url
   end
 end
