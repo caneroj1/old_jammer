@@ -41,7 +41,7 @@ class MessagesController < ApplicationController
 	# pane in the messages page
 	def get_message
 		message = Message.find_by_id(params[:m_id])
-		reply = message.replies.new
+		reply = Reply.new
 		render partial: "partials/message/message", locals: { message: message, reply: reply }
 	end
 
