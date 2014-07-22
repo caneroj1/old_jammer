@@ -44,7 +44,7 @@ class Message < ActiveRecord::Base
     "#{user.first_name} #{user.last_name}"
   end
 
-  # first name of the message sneder
+  # first name of the message sender
   def first_name
     user = User.find_by_id(sent_by).first_name
   end
@@ -60,7 +60,7 @@ class Message < ActiveRecord::Base
     lesson_request.nil? ? jam_request.nil? ? booking_request.nil? ? "No Type" : "Booking Request" : "Jam Request" : "Lesson Request"
   end
 
-  # returns the user who sent the message
+  # returns the user who received the message
   def receiver
     users[0].id.eql?(sent_by) ? users[1] : users[0]
   end

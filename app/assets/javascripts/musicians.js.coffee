@@ -12,7 +12,7 @@ get_message = ->
 	$.get(url, (data) ->
 		$('#message-pane').html(data)
 	).done ->
-		$('.replies').scrollTop($('.replies')[0].scrollHeight);
+		$('.replies').scrollTop($('.replies')[0].scrollHeight)
 		$('#reply-send-form').submit ->
 			message_id = $('#message-id').text()
 			musician_id = $('#musician_id').data("id")
@@ -37,7 +37,11 @@ get_message = ->
 			).fail( ->
 				alert 'no good'
 				$.get(get_url, (data) ->
-					$('.replies').append(data))
+					$('.replies').append(data)
+				).done( ->
+					$('.replies').scrollTop($('.replies')[0].scrollHeight)
+					$('#reply-body').val('')
+				)
 			)
 			false
 
