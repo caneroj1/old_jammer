@@ -44,6 +44,11 @@ class Message < ActiveRecord::Base
     "#{user.first_name} #{user.last_name}"
   end
 
+  # first name of the message sneder
+  def first_name
+    user = User.find_by_id(sent_by).first_name
+  end
+
   # returns the url to the avatar of the sender
   def sender_picture
     user = User.find_by_id(sent_by)
@@ -64,5 +69,13 @@ class Message < ActiveRecord::Base
   def receiver_picture
     user = users.select { |user| !user.id.eql?(sent_by) }.first
     user.avatar_url
+  end
+
+  # returns the most recent time of activity for this message
+  # if the message has no replies, it is the time this message was created
+  # otherwise it is the time of creation of the last reply
+  def last_active_time
+    time = replies.any? ? replies.last.created_at : created_at
+    time.strftime("%d/%-m/%Y")
   end
 end

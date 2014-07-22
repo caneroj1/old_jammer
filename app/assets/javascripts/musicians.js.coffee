@@ -12,6 +12,7 @@ get_message = ->
 	$.get(url, (data) ->
 		$('#message-pane').html(data)
 	).done ->
+		$('.replies').scrollTop($('.replies')[0].scrollHeight);
 		$('#reply-send-form').submit ->
 			message_id = $('#message-id').text()
 			musician_id = $('#musician_id').data("id")
