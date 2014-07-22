@@ -1,11 +1,11 @@
-- if reply.sent_by.eql?(message.sent_by)
+- if reply.sent_by.eql?(current_user.id)
 	.col-xs-offset-2.col-xs-9.reply-r
 		%table
 			%tr
 				%td
 					= reply.reply_body
 				%td.img
-					=image_tag message.sender_picture, class: "img-circle reply-pic left"
+					=image_tag current_user.avatar_url, class: "img-circle reply-pic left"
 - else
 	.col-xs-9.col-xs-offset-1.reply-l
 		%table
@@ -13,4 +13,4 @@
 				%td.img
 					= image_tag message.receiver_picture, class: "img-circle reply-pic left"
 				%td
-					= message.message_body
+					= reply.reply_body
