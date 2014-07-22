@@ -5,12 +5,25 @@
 				%td
 					= reply.reply_body
 				%td.img
-					=image_tag current_user.avatar_url, class: "img-circle reply-pic left"
+					.pic
+						=image_tag current_user.avatar_url, class: "img-circle reply-pic"
+					.name-or-date
+						= reply.sent_name
+					- if show_time?(reply)
+						.name-or-date
+							= reply_time(reply)
+
 - else
 	.col-xs-9.col-xs-offset-1.reply-l
 		%table
 			%tr
 				%td.img
-					= image_tag message.receiver_picture, class: "img-circle reply-pic left"
+					.pic
+						= image_tag reply.sender_picture, class: "img-circle reply-pic"
+					.name-or-date
+						= reply.sent_name
+					- if show_time?(reply)
+						.name-or-date
+							= reply_time(reply)
 				%td
 					= reply.reply_body

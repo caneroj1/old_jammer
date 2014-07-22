@@ -1,6 +1,6 @@
 %h2.text-center
 	= message.subject
-	%small= "last message: #{message.updated_at.strftime("%d/%-m/%Y")}"
+	%small= "last message: #{message.last_active_time}"
 %h4.text-center= "#{message.type?} from #{message.sender}"
 .col-xs-10.col-xs-offset-1.replies
 	%div{ class: original_message(current_user.id, message.sent_by) }
@@ -10,14 +10,22 @@
 					%td
 						= message.message_body
 					%td.img
-						= image_tag message.sender_picture, class: "img-circle reply-pic left"
+						.pic
+							= image_tag message.sender_picture, class: "img-circle reply-pic"
+						.name-or-date
+							= message.first_name
 				- else
 					%td.img
-						= image_tag message.sender_picture, class: "img-circle reply-pic left"
+						.pic
+							= image_tag message.sender_picture, class: "img-circle reply-pic"
+						.name-or-date
+							= message.first_name
 					%td
 						= message.message_body
+
 	- message.replies.each do |a_reply|
 		= render :partial => "partials/replies/reply", locals: { message: message, reply: a_reply }
+
 .col-xs-10.col-xs-offset-1.respond
 	%form#reply-send-form
 		.input-group.add-on

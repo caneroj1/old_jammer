@@ -110,18 +110,9 @@ table {
 	height: 60px;
 }
 
-.left {
-	margin-right: 10px;
-
-}
-
-.right {
-	margin-left: 10px;
-}
-
 .reply-l, .reply-r {
-	padding-top: 5px;
-	padding-bottom: 5px;
+	padding-top: 8px;
+	padding-bottom: 8px;
 }
 
 .reply-l {
@@ -152,6 +143,7 @@ table {
 
 .add-on .input-group-btn > .btn {
   border-left-width:0;
+  border: none;
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
 }
@@ -169,4 +161,13 @@ table {
 
 .hidden {
 	display: none;
+}
+
+.pic {
+	text-align: center
+}
+
+.name-or-date {
+	text-align: center;
+	padding-top: 5px;
 }
