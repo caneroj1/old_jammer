@@ -3,13 +3,14 @@
 		%table
 			%tr
 				%td
+					= reply.reply_body
+				%td.img
 					=image_tag message.sender_picture, class: "img-circle reply-pic left"
-				%td
 - else
 	.col-xs-9.col-xs-offset-1.reply-l
 		%table
 			%tr
 				%td.img
-					=image_tag message.receiver_picture, class: "img-circle reply-pic left"
+					= image_tag message.receiver_picture, class: "img-circle reply-pic left"
 				%td
-					=message.message_body
+					= message.message_body
