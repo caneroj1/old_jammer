@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140713153433) do
+ActiveRecord::Schema.define(version: 20140722021159) do
 
   create_table "messages", force: true do |t|
     t.datetime "created_at"
@@ -27,6 +27,12 @@ ActiveRecord::Schema.define(version: 20140713153433) do
 
   create_table "messages_users", id: false, force: true do |t|
     t.integer "user_id"
+    t.integer "message_id"
+  end
+
+  create_table "replies", force: true do |t|
+    t.text    "reply_body"
+    t.integer "sent_by"
     t.integer "message_id"
   end
 

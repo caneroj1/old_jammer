@@ -1,18 +1,28 @@
 %h2.text-center
-	= @message.subject
-	%small= "last message: #{@message.updated_at.strftime("%d/%-m/%Y")}"
-%h4.text-center= "#{@message.type?} from #{@message.sender}"
+	= message.subject
+	%small= "last message: #{message.updated_at.strftime("%d/%-m/%Y")}"
+%h4.text-center= "#{message.type?} from #{message.sender}"
 .col-xs-10.col-xs-offset-1.replies
-	.col-xs-9.col-xs-offset-1.reply-l
-		=image_tag @message.sender_picture, class: "img-circle reply-pic left"
-		=@message.message_body
 	.col-xs-offset-2.col-xs-9.reply-r
-		=image_tag @message.receiver.avatar_url, class: "img-circle reply-pic left"
+		%table
+			%tr
+				%td
+					=image_tag message.sender_picture, class: "img-circle reply-pic left"
+				%td
+	.col-xs-9.col-xs-offset-1.reply-l
+		%table
+			%tr
+				%td.img
+					=image_tag message.receiver_picture, class: "img-circle reply-pic left"
+				%td
+					=message.message_body
 .col-xs-10.col-xs-offset-1.respond
-	%form
+	= form_for(reply, url: create_reply_musician_message_path(current_user.id, message), method: :post, remote: true) do |f|
 		.input-group.add-on
-			%textarea{type: :text, class: "form-control reply-contents"}
+			= f.text_area(:reply_body, value: "", class: "form-control reply-contents")
+			= f.hidden_field(:sent_by, value: current_user.id)
+			= f.hidden_field(:message_id, value: message.id)
 			.input-group-btn
-				%button{type: :submit, class: "btn btn-info reply-send"}
+				= button_tag(class: "btn btn-info reply-send", id: "reply-button") do
 					Send
 					%span.glyphicon.glyphicon-send

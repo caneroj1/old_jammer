@@ -36,8 +36,20 @@ class MessagesController < ApplicationController
 		end
 	end
 
+	# this will return the message in neatly formatted haml
+	# package that can simply be added to the message display
+	# pane in the messages page
 	def get_message
-		@message = Message.find_by_id(params[:m_id])
-		render partial: "partials/message/message", locals: { message: @message }
+		message = Message.find_by_id(params[:m_id])
+		reply = message.replies.new
+		render partial: "partials/message/message", locals: { message: message, reply: reply }
+	end
+
+	# this will return the reply in neatly formatted haml
+	# package that can simply be appended to the list of replies
+	# on the message page
+	def get_last_reply
+		message = Message.find_by_id(params[:m_id])
+		render :partial => "partials/replies/reply", locals: { message: message, reply: message.replies.last }
 	end
 end

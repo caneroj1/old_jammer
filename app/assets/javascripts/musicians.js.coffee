@@ -7,9 +7,16 @@
 # corresponding to the desired message. we then append this in the right column of the messages page.
 get_message = ->
 	message_id = $(this).data("id")
-	url = "/musicians/11/messages/9/get_message?m_id=" + message_id
+	musician_id = $('#musician_id').data("id")
+	url = "/musicians/" + musician_id + "/messages/" + message_id + "/get_message?m_id=" + message_id
 	$.get(url, (data) ->
 		$('#message-pane').html(data))
+
+send_reply = ->
+	# musician_id = $('#musician_id').data("id")
+	# url = "/musicians/" + musician_id + "/messages/" + @message.id + "/get_reply?m_id=" + @message.id
+	$.get(url = "/musicians/" + $('#musician_id').data("id") + "/messages/" + @message.id + "/get_reply?m_id=" + @message.id, (data) ->
+		$('.replies').append(data))
 
 ## do not allow the user to submit a blank password form
 password_check = ->
