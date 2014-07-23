@@ -6,6 +6,8 @@
 # effectively, we make a get request to the messages controller in order to return the partial
 # corresponding to the desired message. we then append this in the right column of the messages page.
 get_message = ->
+	$('#message-pane').css('display', 'block')
+	$('#message-pane').html('')
 	message_id = $(this).data("id")
 	musician_id = $('#musician_id').data("id")
 	url = "/musicians/" + musician_id + "/messages/" + message_id + "/get_message?m_id=" + message_id
@@ -31,11 +33,9 @@ get_message = ->
 						message_id: message_id
 				dataType: "json"
 			}).done( ->
-				alert 'king'
 				$.get(get_url, (data) ->
 					$('.replies').append(data))
 			).fail( ->
-				alert 'no good'
 				$.get(get_url, (data) ->
 					$('.replies').append(data)
 				).done( ->

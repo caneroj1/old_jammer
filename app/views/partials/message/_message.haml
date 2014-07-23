@@ -14,12 +14,16 @@
 							= image_tag message.sender_picture, class: "img-circle reply-pic"
 						.name-or-date
 							= message.first_name
+						.name-or-date
+							= message_time(message)
 				- else
 					%td.img
 						.pic
 							= image_tag message.sender_picture, class: "img-circle reply-pic"
 						.name-or-date
 							= message.first_name
+						.name-or-date
+							= message_time(message)
 					%td
 						= message.message_body
 

@@ -27,8 +27,6 @@ module RepliesHelper
 	# if the time the message was created is more than 5 minutes ago,
 	# we should display the time the reply was created
 	def show_time?(reply)
-		puts "here"
-		puts Time.now - reply.created_at
 		(Time.now - reply.created_at) > 300.0
 	end
 
