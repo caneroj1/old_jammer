@@ -2,7 +2,7 @@
 	.col-xs-offset-2.col-xs-9.reply-r
 		%table
 			%tr
-				%td
+				%td.body
 					= reply.reply_body
 				%td.img
 					.pic
@@ -25,5 +25,5 @@
 					- if show_time?(reply)
 						.name-or-date
 							= reply_time(reply)
-				%td
+				%td.body
 					= reply.reply_body

@@ -76,6 +76,6 @@ class Message < ActiveRecord::Base
   # otherwise it is the time of creation of the last reply
   def last_active_time
     time = replies.any? ? replies.last.created_at : created_at
-    time.strftime("%d/%-m/%Y")
+    time.strftime("%-m/%d/%Y, %l:%M, %P")
   end
 end
