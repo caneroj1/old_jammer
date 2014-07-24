@@ -3,7 +3,7 @@ module MessagesHelper
 	# the time displayed is dependent upon the time the
 	# message was sent
 	def message_time(message)
-		message_time = message.created_at
+		message_time = message.created_at.localtime
 		response = what_time_to_show?(message_time)
 		case response
 		when "minutes"
@@ -20,9 +20,9 @@ module MessagesHelper
 	# else, show minutes and seconds
 	def what_time_to_show?(message_time)
 		now = Time.now
-		if (now - message_time) < (60 * 60 * 24)
+		if (now - message_time.localtime) < (60 * 60 * 24)
 			"minutes"
-		elsif (now - message_time) < (60 * 60 * 24 * 365)
+		elsif (now - message_time.localtime) < (60 * 60 * 24 * 365)
 			"months"
 		else
 			"years"

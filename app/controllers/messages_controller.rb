@@ -50,21 +50,27 @@ class MessagesController < ApplicationController
 	# on the message page
 	def get_reply
 		message = Message.find_by_id(params[:m_id])
-		reply = message.replies.last
+		reply = params[:r_id] ? message.replies.find(params[:r_id]) : message.replies.last
 		render partial: "partials/replies/reply", locals: { message: message, reply: reply }
 	end
 
-	# return the id of the last created message
+	# return the ids of the last created messages that the page sending the request
+	# doesn't have
 	def last_created_reply
 		message = Message.find_by_id(params[:m_id])
-		reply_id = 
-		if message.replies.last.nil?
-			nil
+		replies = message.replies.last(message.replies.count - params[:reply_count].to_i)
+
+		# maps the reply_ids variable into an empty array or a array of hashes
+		# containing the id of the reply and the id of the user who sent it
+		reply_ids = 
+		if replies.empty?
+			[]
 		else
-			message.replies.last.id
+			replies.map { |r| { :id => r.id, :sent_by => r.sent_by } }
 		end
+
 		respond_to do |format|
-			format.json { render :json => {reply_id: reply_id } }
+			format.json { render :json => { replies: reply_ids, new_count: message.replies.count } }
 		end
 	end
 end

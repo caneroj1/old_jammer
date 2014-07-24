@@ -8,6 +8,7 @@ last_reply = ->
 	message_id = $('#message-id').text()
 	musician_id = $('#musician_id').data("id")
 	sender_id = $('#replies').data("sender")
+	count = $('#replies').data("replies")
 
 	# if all of these things are not empty, we are on the messages window with a message loaded
 	# we can begin to check if there is a new response
@@ -17,17 +18,25 @@ last_reply = ->
 			url: "/musicians/" + musician_id + "/messages/" + message_id + "/last_created_reply"
 			data:
 				m_id: message_id
+				reply_count: count
 			dataType: "json"
 		}).done( (response) ->
-			
-			# if the response is a number (meaning there is a reply for the message) and the
-			# response was sent by someone other than the current user, load the reply
-			if $.isNumeric(response.reply_id) && response.reply_id != sender_id
-				if $('.reply').last().data("reply-id") != response.reply_id
-					get_url = "/musicians/" + musician_id + "/messages/" + message_id + "/get_reply?m_id=" + message_id
-					$.get(get_url, (data) ->
-							$('.replies').append(data)
-							$('.replies').scrollTop($('.replies')[0].scrollHeight))
+			if $.isNumeric(response.new_count)
+				$('#replies').data("replies", response.new_count)
+			$.each(response.replies, (i, item) ->
+					id = response.replies[i].id
+					sent_by = response.replies[i].sent_by
+
+					# if the response is a number (meaning there is a reply for the message) and the
+					# response was sent by someone other than the current user, load the reply
+					console.log(musician_id + "    " + sent_by)
+					if $.isNumeric(id) && musician_id != sent_by
+						if $('.reply').last().data("reply-id") != id
+							get_url = "/musicians/" + musician_id + "/messages/" + message_id + "/get_reply?m_id=" + message_id + "&r_id=" + id
+							$.get(get_url, (data) ->
+									$('.replies').append(data)
+									$('.replies').scrollTop($('.replies')[0].scrollHeight))
+			)
 		)
 
 ## this function will use the data attribute on a message link to get the correct page content.
@@ -43,6 +52,12 @@ get_message = ->
 		$('#message-pane').html(data)
 	).done ->
 		$('.replies').scrollTop($('.replies')[0].scrollHeight)
+		
+		# $('#reply-send-form').bind('keypress', (e) ->
+		# 	code = e.keyCode || e.which
+		# 	if code == 13
+		# 		$(this).submit())
+		
 		$('#reply-send-form').submit ->
 			message_id = $('#message-id').text()
 			musician_id = $('#musician_id').data("id")
