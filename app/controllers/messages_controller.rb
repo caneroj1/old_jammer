@@ -53,4 +53,18 @@ class MessagesController < ApplicationController
 		reply = message.replies.last
 		render partial: "partials/replies/reply", locals: { message: message, reply: reply }
 	end
+
+	# return the id of the last created message
+	def last_created_reply
+		message = Message.find_by_id(params[:m_id])
+		reply_id = 
+		if message.replies.last.nil?
+			nil
+		else
+			message.replies.last.id
+		end
+		respond_to do |format|
+			format.json { render :json => {reply_id: reply_id } }
+		end
+	end
 end

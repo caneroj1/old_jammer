@@ -33,3 +33,9 @@
 	font-size: 65px;
 	font-weight: 100;
 }
+
+@mixin transition($type, $length, $end) {
+	transition: $type $length $end;
+	-moz-transition: $type $length $end;
+	-webkit-transition: $type $length $end;
+}
