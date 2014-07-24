@@ -2,6 +2,34 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
+## this function will query the messages_controller for the id of the last created reply
+last_reply = ->
+	# get the ids of the message, the current musician and the id of the message sender
+	message_id = $('#message-id').text()
+	musician_id = $('#musician_id').data("id")
+	sender_id = $('#replies').data("sender")
+
+	# if all of these things are not empty, we are on the messages window with a message loaded
+	# we can begin to check if there is a new response
+	if message_id != "" && musician_id != "" && sender_id != ""
+		$.ajax({
+			type: "GET"
+			url: "/musicians/" + musician_id + "/messages/" + message_id + "/last_created_reply"
+			data:
+				m_id: message_id
+			dataType: "json"
+		}).done( (response) ->
+			
+			# if the response is a number (meaning there is a reply for the message) and the
+			# response was sent by someone other than the current user, load the reply
+			if $.isNumeric(response.reply_id) && response.reply_id != sender_id
+				if $('.reply').last().data("reply-id") != response.reply_id
+					get_url = "/musicians/" + musician_id + "/messages/" + message_id + "/get_reply?m_id=" + message_id
+					$.get(get_url, (data) ->
+							$('.replies').append(data)
+							$('.replies').scrollTop($('.replies')[0].scrollHeight))
+		)
+
 ## this function will use the data attribute on a message link to get the correct page content.
 # effectively, we make a get request to the messages controller in order to return the partial
 # corresponding to the desired message. we then append this in the right column of the messages page.
@@ -73,6 +101,7 @@ buttons = ->
 $ ->
 	# redo the file select buttons to be more inline with the theme of the site
 	$('input[type=file]').bootstrapFileInput();
-	do buttons
-	setInterval(password_check, 100)
+	do buttons												# if the user clicks on the #add element, it will add a new genres element to the page
+	setInterval(last_reply, 5000)			# check for a new reply in the messages window every 5 seconds
+	setInterval(password_check, 100)	# check if the user entered anything in the password field every 100 ms
 	$('.msg-link').on 'click', get_message

@@ -2,8 +2,8 @@
 	= message.subject
 	%small= "last message: #{message.last_active_time}"
 %h4.text-center= "#{message.type?} from #{message.sender}"
-.col-xs-10.col-xs-offset-1.replies
-	%div{ class: original_message(current_user.id, message.sent_by) }
+.col-xs-10.col-xs-offset-1.replies#replies{ data: { sender: message.sent_by } }
+	%div{ class: original_message(current_user.id, message.sent_by), data: { reply_id: reply.id } }
 		%table
 			%tr
 				- if sent_by_me?(current_user.id, message.sent_by)

@@ -1,5 +1,5 @@
 - if reply.sent_by.eql?(current_user.id)
-	.col-xs-offset-2.col-xs-9.reply-r
+	.col-xs-offset-2.col-xs-9.reply-r.reply{ data: {reply_id: reply.id } }
 		%table
 			%tr
 				%td.body
@@ -14,7 +14,7 @@
 							= reply_time(reply)
 
 - else
-	.col-xs-9.col-xs-offset-1.reply-l
+	.col-xs-9.col-xs-offset-1.reply-l.reply{ data: {reply_id: reply.id } }
 		%table
 			%tr
 				%td.img

@@ -27,7 +27,7 @@
 								%a Booking
 				= form_tag("/search", method: :get, class: 'navbar-form navbar-right') do
 					.form-group
-						= text_field_tag :search, "", class: "form-control", placeholder: "Search"
+						= text_field_tag :search, "", class: "form-control", placeholder: "Search", id: "search-bar"
 					= submit_tag "Search", class: "btn btn-info"
 					=link_to 'Log Out', destroy_user_session_path, class: "btn btn-danger", method: :delete
 				- if notice || alert

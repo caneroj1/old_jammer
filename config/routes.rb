@@ -25,6 +25,7 @@ Rails.application.routes.draw do
       get '/get_message', to: "messages#get_message", on: :member
       post '/create_reply', to: "replies#create_reply", on: :member
       get '/get_reply', to: "messages#get_reply", on: :member
+      get '/last_created_reply', to: "messages#last_created_reply", on: :member
     end
   end 
 
