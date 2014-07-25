@@ -16,16 +16,19 @@ Rails.application.routes.draw do
   # that a musician can check
   resources :musicians do
     member do
-      # get 'show_message'
       get 'contact'
       get 'messages'
       post 'upload'
+      get 'songs'
+      post 'song_upload', to: "songs#upload"
     end
     resources :messages do
-      get '/get_message', to: "messages#get_message", on: :member
-      post '/create_reply', to: "replies#create_reply", on: :member
-      get '/get_reply', to: "messages#get_reply", on: :member
-      get '/last_created_reply', to: "messages#last_created_reply", on: :member
+      member do
+        get '/get_message', to: "messages#get_message"
+        post '/create_reply', to: "replies#create_reply"
+        get '/get_reply', to: "messages#get_reply"
+        get '/last_created_reply', to: "messages#last_created_reply"
+      end
     end
   end 
 

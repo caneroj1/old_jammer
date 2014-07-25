@@ -1,0 +1,2 @@
+module Jammer
+end
