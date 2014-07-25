@@ -77,6 +77,11 @@ class MusiciansController < ApplicationController
 		@messages = @musician.messages
 	end
 
+	# this will display all of the user's songs
+	def songs
+		@songs = Jammer::Uploader.get_user_songs(current_user.id, current_user.uploaded_songs)
+	end
+
 	private
 	def process_genres
 		# clear the genres key and value pair that was a hidden field from the form

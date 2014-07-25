@@ -54,3 +54,7 @@ gem 'awesome_print'
 gem 'carrierwave'
 # for initial image processing when uploading profile pics
 gem 'rmagick', require: false 
+# use figaro for setting environmental variables
+gem 'figaro'
+# aws sdk for storing music and video
+gem 'aws-sdk', '> 1.3.4'

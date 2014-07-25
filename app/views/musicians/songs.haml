@@ -1,0 +1,12 @@
+.container-fluid.smoke
+	.row
+		.col-xs-8.col-xs-offset-2.content
+			.page-header.text-center
+				%h1 Your Songs
+			.well.songs
+				%p Hello
+				.col-xs-6.col-xs-offset-3
+					= form_tag(song_upload_musician_path(current_user.id), method: :post, multipart: true) do 
+						.form-group
+							= file_field_tag "song_file", class: "form-control avatar"
+						= submit_tag "Upload Song", class: "btn btn-info btn-block"
