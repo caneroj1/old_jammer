@@ -44,7 +44,10 @@ last_reply = ->
 # corresponding to the desired message. we then append this in the right column of the messages page.
 get_message = ->
 	$('#message-pane').css('display', 'block')
-	$('#message-pane').html('')
+	# $('#message-pane').html('')
+	$('.not-selected').css('display', 'none')
+	$('.hidden-loader').css('display', 'initial')
+
 	message_id = $(this).data("id")
 	musician_id = $('#musician_id').data("id")
 	url = "/musicians/" + musician_id + "/messages/" + message_id + "/get_message?m_id=" + message_id
