@@ -128,9 +128,15 @@ fill_in_field = ->
 	$('.pic_link').bind 'click', ->
 		$('#song_number').val($(this).data("number"))
 
+## this will display the loading gif when uploading a song
+display_loader = ->
+	$('#song_upload').on 'click', ->
+		$('.loader').css('display', 'block')
+
 $ ->
 	# redo the file select buttons to be more inline with the theme of the site
 	$('input[type=file]').bootstrapFileInput();
+	do display_loader									# display the loading gif when uploading a song
 	do thumbnail											# manage thumbnail form display
 	do buttons												# if the user clicks on the #add element, it will add a new genres element to the page
 	do fill_in_field									# when the user clicks to upload a thumbnail, handle the event

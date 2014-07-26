@@ -57,6 +57,6 @@ class User < ActiveRecord::Base
 
   # this will return the song according to the specified number in the user's songs array
   def get_song_by_number(number)
-    songs.each { |song| song if song.song_number.eql?(number) }
+    songs.find_by_song_number(number)
   end
 end
