@@ -29,7 +29,7 @@ module Jammer
 		# videos are indexed by "user_id"_videos"video_number"
 		# for example, if user 33 is uploading their 5th video, the index will be
 		# 33_vids5
-		def self.upload_song(video, user_id, video_number)
+		def self.upload_video(video, user_id, video_number)
 			s3 = return_aws_object
 			s3.buckets["#{Rails.env.to_s}_vids"].objects["#{user_id}_vids#{video_number}"].write(video.read)
 		end

@@ -6,7 +6,7 @@
 			.well.songs
 				%p Hello
 				.col-xs-6.col-xs-offset-3
-					= form_tag(song_upload_musician_path(current_user.id), method: :post, multipart: true) do 
+					= form_for(@musician, url: song_upload_musician_path(current_user.id), method: :post) do |f|
 						.form-group
-							= file_field_tag "song_file", class: "form-control avatar"
-						= submit_tag "Upload Song", class: "btn btn-info btn-block"
+							= f.file_field "song_file", class: "form-control avatar"
+						= f.submit "Upload Song", class: "btn btn-info btn-block"
