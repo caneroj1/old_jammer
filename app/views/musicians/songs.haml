@@ -9,12 +9,18 @@
 					%hr
 					- count = @musician.songs.each do |song|
 						.song
-							%h3.song-name
-								= song.song_name
-								%small
-									= "Uploaded #{song.created_at.strftime('%-m/%d')}"
-							%audio{ controls: true }
-								%source{ src: song.url, type: "audio/mp3" }
+							%table
+								%tr
+									%td.thumb-container
+										.thumb
+											= image_tag song.thumb.url
+									%td.song-container
+										%h3.song-name
+											= song.song_name
+											%small
+												= "Uploaded #{song.created_at.strftime('%-m/%d')}"
+										%audio{ controls: true }
+											%source{ src: song.url, type: "audio/mp3" }
 					- if count.eql?(0)
 						%p You have not uploaded any songs. Use the form to the right to upload them!
 				.col-xs-6.song-list

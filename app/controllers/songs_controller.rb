@@ -27,11 +27,19 @@ class SongsController < ApplicationController
 		redirect_to songs_musician_path(user)
 	end	
 
+	# this method will handle uploading thumbnail images to the song
+	def upload_thumb
+		song = User.find_by_id(params[:id]).get_song_by_number(params[:user][:song_number])
+		if !params[:user].nil?
+			song.thumb = params[:user][:thumb]
+			song.save
+			flash[:upload_success] = "Thumbnail successfully uploaded!"
+		else
+			flash[:upload_error] = "There was a problem uploading that file"
+		end
 
-
-
-
-
+		redirect_to songs_musician_path(user)
+	end
 
 	private
 	def is_mp3?(file)

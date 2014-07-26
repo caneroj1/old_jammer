@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140726035553) do
+ActiveRecord::Schema.define(version: 20140726042536) do
 
   create_table "messages", force: true do |t|
     t.datetime "created_at"
@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 20140726035553) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "thumb"
   end
 
   create_table "songs_tables", force: true do |t|
