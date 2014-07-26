@@ -21,6 +21,7 @@ Rails.application.routes.draw do
       post 'upload'
       get 'songs'
       post 'song_upload', to: "songs#upload"
+      post 'song_upload_thumb', to: "songs#upload_thumb"
     end
     resources :messages do
       member do

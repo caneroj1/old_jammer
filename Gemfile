@@ -58,3 +58,5 @@ gem 'rmagick', require: false
 gem 'figaro'
 # aws sdk for storing music and video
 gem 'aws-sdk', '> 1.3.4'
+# carrierwave support for aws
+gem "fog", "~> 1.3.1"
