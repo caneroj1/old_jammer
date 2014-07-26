@@ -2,9 +2,9 @@
 <html>
 <head>
   <title>Jammer</title>
-  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag 'application', media: 'all'%>
 
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application' %>
 
   <%= yield :devise_forms if :devise_controller? %>
   <%= csrf_meta_tags %>
