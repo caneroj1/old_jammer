@@ -2,11 +2,24 @@
 	.row
 		.col-xs-8.col-xs-offset-2.content
 			.page-header.text-center
-				%h1 Your Songs
+				%h1 Your Music
 			.well.songs
-				%p Hello
-				.col-xs-6.col-xs-offset-3
+				.col-xs-6.song-list
+					%h2 Song List
+					%hr
+					- count = @musician.songs.each do |song|
+						.song
+							%h3.song-name
+								= song.song_name
+								%small
+									= "Uploaded #{song.created_at.strftime('%-m/%d')}"
+							%audio{ controls: true }
+								%source{ src: song.url, type: "audio/mp3" }
+					- if count.eql?(0)
+						%p You have not uploaded any songs. Use the form to the right to upload them!
+				.col-xs-6.song-list
+					%h2 Upload a New Song
 					= form_for(@musician, url: song_upload_musician_path(current_user.id), method: :post) do |f|
-						.form-group
+						.form-group.song-form
 							= f.file_field "song_file", class: "form-control avatar"
 						= f.submit "Upload Song", class: "btn btn-info btn-block"

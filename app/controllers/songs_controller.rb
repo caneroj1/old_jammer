@@ -5,13 +5,19 @@ class SongsController < ApplicationController
 	# the file that they upload must also be an mp3 file.
 	def upload
 		user = User.find_by_id(params[:id])
+
 		mp3 = uploaded_file?(params) ? is_mp3?(params[:user][:song_file]) : nil
 		under_five = under_five_songs?(user)
 
 		if under_five && !mp3.nil?
-			Jammer::Uploader.upload_song(params[:user][:song_file],
+			url = Jammer::Uploader.upload_song(params[:user][:song_file],
 																	 user.id,
 																	 user.uploaded_songs)
+
+			user.songs.new(song_name: params[:user][:song_file].original_filename.sub(".mp3", ""),
+										 url: url.to_s,
+										 song_number: user.uploaded_songs)
+
 			user.uploaded_songs += 1
 			user.save
 			success_message

@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
   # a user has many messages. these are NOT messages that they send
   # they are messages sent to THEM
   has_and_belongs_to_many :messages
+  has_many :songs
 
   attr_accessible :first_name, 
                   :last_name, 

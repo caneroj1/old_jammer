@@ -80,9 +80,6 @@ class MusiciansController < ApplicationController
 	# this will display all of the user's songs
 	def songs
 		@musician = User.find_by_id(current_user.id)
-
-		#### move this to a helper ####
-		@songs = Jammer::Uploader.get_user_songs(current_user.id, current_user.uploaded_songs)
 	end
 
 	private
