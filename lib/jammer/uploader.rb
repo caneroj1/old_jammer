@@ -23,7 +23,7 @@ module Jammer
 		def self.upload_song(song, user_id, song_number)
 			s3 = return_aws_object
 			s3.buckets["#{Rails.env.to_s}_songs"].objects["#{user_id}_song#{song_number}"].write(song.read)
-			s3.buckets["#{Rails.env.to_s}_songs"].objects["#{user_id}_song#{song_number}"].url_for(:get)
+			s3.buckets["#{Rails.env.to_s}_songs"].objects["#{user_id}_song#{song_number}"].url_for(:get, expires: "Jan 2030")
 		end
 
 		# upload a video to the video bucket
@@ -33,7 +33,7 @@ module Jammer
 		def self.upload_video(video, user_id, video_number)
 			s3 = return_aws_object
 			s3.buckets["#{Rails.env.to_s}_vids"].objects["#{user_id}_vids#{video_number}"].write(video.read)
-			s3.buckets["#{Rails.env.to_s}_vids"].objects["#{user_id}_vid#{video_number}"].url_for(:get)
+			s3.buckets["#{Rails.env.to_s}_vids"].objects["#{user_id}_vid#{video_number}"].url_for(:get, expires: "Jan 2030")
 		end
 
 		# # this will get all of the songs that the user has uploaded

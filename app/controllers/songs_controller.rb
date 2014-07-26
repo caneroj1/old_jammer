@@ -29,9 +29,9 @@ class SongsController < ApplicationController
 
 	# this method will handle uploading thumbnail images to the song
 	def upload_thumb
-		song = User.find_by_id(params[:id]).get_song_by_number(params[:user][:song_number])
+		song = User.find_by_id(params[:id]).get_song_by_number(params[:song_number])
 		if !params[:user].nil?
-			song.thumb = params[:user][:thumb]
+			song.thumb = params[:thumb]
 			song.save
 			flash[:upload_success] = "Thumbnail successfully uploaded!"
 		else
