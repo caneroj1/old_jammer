@@ -56,6 +56,10 @@ body {
 	background-color: $well;
 }
 
+.songs {
+	overflow: auto;
+}
+
 textarea {
 	resize: vertical;
 }
@@ -191,4 +195,16 @@ table {
 	top: 48%;
 	left: 48%;
 	position: absolute;
+}
+
+.song-name {
+	margin-top: 0px;
+}
+
+.song {
+	margin-top: 25px;
+}
+
+.song-form {
+	text-align: center;
 }

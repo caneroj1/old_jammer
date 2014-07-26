@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140725011236) do
+ActiveRecord::Schema.define(version: 20140726035553) do
 
   create_table "messages", force: true do |t|
     t.datetime "created_at"
@@ -36,6 +36,22 @@ ActiveRecord::Schema.define(version: 20140725011236) do
     t.integer  "message_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "songs", force: true do |t|
+    t.string   "song_name"
+    t.string   "url"
+    t.integer  "song_number"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "songs_tables", force: true do |t|
+    t.text    "song_name"
+    t.text    "url"
+    t.integer "song_number"
+    t.integer "user_id"
   end
 
   create_table "users", force: true do |t|
