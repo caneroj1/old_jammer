@@ -1,3 +1,4 @@
+= render partial: "partials/songs/upload_thumb"
 .container-fluid.smoke
 	.row
 		.col-xs-8.col-xs-offset-2.content
@@ -13,7 +14,11 @@
 								%tr
 									%td.thumb-container
 										.thumb
-											= image_tag song.thumb.url
+											.picture-box
+												%p.picture-inside 
+													= link_to "Upload", "#", :data => { toggle: "modal", target: "#upload-thumb", number: song.song_number }, class: :pic_link
+													%span.glyphicon.glyphicon-camera.span_pic
+											= image_tag song.thumb.url, class: "image-thumbnail"
 									%td.song-container
 										%h3.song-name
 											= song.song_name
@@ -21,11 +26,11 @@
 												= "Uploaded #{song.created_at.strftime('%-m/%d')}"
 										%audio{ controls: true }
 											%source{ src: song.url, type: "audio/mp3" }
-					- if count.eql?(0)
+					- if count.empty?
 						%p You have not uploaded any songs. Use the form to the right to upload them!
 				.col-xs-6.song-list
 					%h2 Upload a New Song
 					= form_for(@musician, url: song_upload_musician_path(current_user.id), method: :post) do |f|
 						.form-group.song-form
-							= f.file_field "song_file", class: "form-control avatar"
+							= f.file_field "song_file", class: "form-control avatar", data: { :filename_placement => "inside" }
 						= f.submit "Upload Song", class: "btn btn-info btn-block"

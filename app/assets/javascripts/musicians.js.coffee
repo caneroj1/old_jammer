@@ -115,11 +115,30 @@ buttons = ->
 		if forms == 6
 			$('#add').after('<p class="text-danger" id="genre-fill">You can only add 5 genres at a time.</p>')
 
+## this function will keep track of whether the user is inside of the thumbnail
+# for a song. if they are, it will display the inside of the picture with a link to upload
+# a new thumbnail
+thumbnail = ->
+	$(".picture-box").bind "mouseenter mouseleave", ->
+	  $(this).children().slideToggle(250)
+
+## fill in the hidden field for the thumbnail upload form that specifies which song
+# the thumbnail is being uploaded for
+fill_in_field = ->
+	$('.pic_link').bind 'click', ->
+		$('#song_number').val($(this).data("number"))
 
 $ ->
 	# redo the file select buttons to be more inline with the theme of the site
 	$('input[type=file]').bootstrapFileInput();
+	do thumbnail											# manage thumbnail form display
 	do buttons												# if the user clicks on the #add element, it will add a new genres element to the page
+	do fill_in_field									# when the user clicks to upload a thumbnail, handle the event
 	setInterval(last_reply, 5000)			# check for a new reply in the messages window every 5 seconds
 	setInterval(password_check, 100)	# check if the user entered anything in the password field every 100 ms
 	$('.msg-link').on 'click', get_message
+
+
+
+
+
