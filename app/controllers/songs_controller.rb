@@ -8,13 +8,13 @@ class SongsController < ApplicationController
 
 		mp3 = uploaded_file?(params) ? is_mp3?(params[:user][:song_file]) : nil
 		under_five = under_five_songs?(user)
-
-		if under_five && !mp3.nil?
+		puts mp3
+		if under_five && mp3
 			url = Jammer::Uploader.upload_song(params[:user][:song_file],
 																	 user.id,
 																	 user.uploaded_songs)
 
-			user.songs.new(song_name: params[:user][:song_file].original_filename.sub(".mp3", ""),
+			user.songs.new(song_name: params[:user][:song_file].original_filename,
 										 url: url.to_s,
 										 song_number: user.uploaded_songs)
 
@@ -43,7 +43,7 @@ class SongsController < ApplicationController
 
 	private
 	def is_mp3?(file)
-		file.content_type.eql?("audio/mp3")
+		%w{ audio/x-m4a audio/mp3 audio/mpeg }.include?(file.content_type)
 	end
 
 	def under_five_songs?(user)
@@ -61,7 +61,7 @@ class SongsController < ApplicationController
 	def failure_message(mp3, under_five)
 		flash[:failure] = 
 		if mp3.nil? || !mp3
-			"Please upload an mp3."
+			"Please either an mp3, mp4, or mpeg file."
 		elsif !under_five
 			"You have reached your 5 song limit."
 		end

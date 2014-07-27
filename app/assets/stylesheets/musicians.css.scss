@@ -256,3 +256,11 @@ table {
 	display: none;
 	text-align: center;
 }
+
+.success {
+	color: $state-success-text;
+}
+
+.failure {
+	color: $state-danger-text;
+}

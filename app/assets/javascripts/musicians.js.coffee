@@ -131,7 +131,7 @@ fill_in_field = ->
 ## this will display the loading gif when uploading a song
 display_loader = ->
 	$('#song_upload').on 'click', ->
-		$('.loader').css('display', 'block')
+		$('.loader').show()
 
 $ ->
 	# redo the file select buttons to be more inline with the theme of the site
@@ -143,6 +143,7 @@ $ ->
 	setInterval(last_reply, 5000)			# check for a new reply in the messages window every 5 seconds
 	setInterval(password_check, 100)	# check if the user entered anything in the password field every 100 ms
 	$('.msg-link').on 'click', get_message
+	$('p.success, p.failure').fadeOut(6000)
 
 
 
