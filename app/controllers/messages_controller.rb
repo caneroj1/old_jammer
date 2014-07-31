@@ -6,8 +6,7 @@ class MessagesController < ApplicationController
 		@musician = User.find_by_id(params[:musician_id])
 		@message = Message.create(params[:message])
 
-		# if the request is sent from a logged in user
-		sender = User.find(params[:message][:sent_by]) if params[:message][:sent_by]
+		sender = User.find(params[:message][:sent_by])
 
 		## fill in the request type of the message
 		case params[:request]
