@@ -37,10 +37,4 @@
 					.form-group
 						%h4 What do you have to say?
 						= f.text_area(:message_body, value: @message.message_body.nil? ? "" : @message.message_body, size: "24x6", class: "form-control", placeholder: "Let it all out")
-					- if @message.sent_by.nil?
-						%br
-						.form-group
-							%h4 Who is this from?
-							.form-group
-								= f.text_field(:return_email, placeholder: "Please enter your email", class: "form-control")
 					= f.submit "Send", class: "btn btn-info btn-block"
