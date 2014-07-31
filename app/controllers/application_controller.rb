@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
 
   # whenever we are on a devise controller, change the permitted parameters
   before_filter :configure_permitted_parameters, if: :devise_controller?
+  before_filter :authenticate_user!, except: [:index]
 
   ## these three methods are necessary to get devise forms on any page
 	def resource_name

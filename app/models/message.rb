@@ -24,6 +24,7 @@ class Message < ActiveRecord::Base
   validates :booking_request, presence: true, if: "jam_request.nil? && lesson_request.nil?"
   validates :message_body, presence: true
   validates :subject, presence: true
+  validates :return_email, presence: true, if: "sent_by.nil?"
 
   # returns an array of first names of the users associated with this
   # message
@@ -40,19 +41,27 @@ class Message < ActiveRecord::Base
 
   # returns the name of the user who sent the message
   def sender
-    user = User.find_by_id(sent_by)
-    "#{user.first_name} #{user.last_name}"
+    if sent_by
+      user = User.find_by_id(sent_by)
+      "#{user.first_name} #{user.last_name}"
+    else
+      return_email
+    end
   end
 
   # first name of the message sender
   def first_name
-    user = User.find_by_id(sent_by).first_name
+    sent_by ? user = User.find_by_id(sent_by).first_name : return_email
   end
 
   # returns the url to the avatar of the sender
   def sender_picture
-    user = User.find_by_id(sent_by)
-    user.avatar_url
+    if sent_by
+      user = User.find_by_id(sent_by)
+      user.avatar_url
+    else
+      "/assets/no_avatar.png"
+    end
   end
 
   # returns the type of message
