@@ -10,6 +10,7 @@ class SongsController < ApplicationController
 		under_five = under_five_songs?(user)
 		puts mp3
 		if under_five && mp3
+			user.uploaded_songs += 1
 			url = Jammer::Uploader.upload_song(params[:user][:song_file],
 																	 user.id,
 																	 user.uploaded_songs)
@@ -18,7 +19,6 @@ class SongsController < ApplicationController
 										 url: url.to_s,
 										 song_number: user.uploaded_songs)
 
-			user.uploaded_songs += 1
 			user.save
 			success_message
 		else
@@ -39,6 +39,13 @@ class SongsController < ApplicationController
 		end
 
 		redirect_to songs_musician_path(current_user)
+	end
+
+	# remove the song from the user's library
+	def remove_song
+		user = User.find_by_id(params[:id])
+		Jammer::Uploader.remove_song(user.id, params[:song_number])
+		user.uploaded_songs -= 1
 	end
 
 	private
