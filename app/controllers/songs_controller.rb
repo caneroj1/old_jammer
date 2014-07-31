@@ -42,10 +42,13 @@ class SongsController < ApplicationController
 	end
 
 	# remove the song from the user's library
-	def remove_song
+	def remove
 		user = User.find_by_id(params[:id])
-		Jammer::Uploader.remove_song(user.id, params[:song_number])
+		urls = Jammer::Uploader.remove_song(user.id, params[:song_number])
+		user.remove_song(params[:song_number], urls)
 		user.uploaded_songs -= 1
+		user.save
+		redirect_to songs_musician_path(current_user)
 	end
 
 	private

@@ -59,4 +59,18 @@ class User < ActiveRecord::Base
   def get_song_by_number(number)
     songs.find_by_song_number(number)
   end
+
+  # this will decrement the song numbers of the user's songs when they remove one
+  def remove_song(number, urls)
+    puts urls
+    songs.each do |song|
+      if song.song_number.eql?(number.to_i)
+        song.delete
+      elsif song.song_number > number.to_i
+        song.song_number -= 1
+        song.url = urls.shift.to_s
+        song.save
+      end
+    end
+  end
 end
