@@ -30,9 +30,14 @@ body {
 	height:155px;
 }
 
-.errors, .no-lessons {
+.errors, .no-lessons, .remove, .remove:hover {
 	color: $red;
 }
+
+.remove:hover {
+	cursor: pointer;
+}
+
 
 #error_explanation {
 	color: $red;

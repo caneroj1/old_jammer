@@ -36,20 +36,28 @@ module Jammer
 			s3.buckets["#{Rails.env.to_s}_vids"].objects["#{user_id}_vid#{video_number}"].url_for(:get, expires: "Jan 2030")
 		end
 
-		# # this will get all of the songs that the user has uploaded
-		# def self.get_user_songs(user_id, song_count)
-		# 	s3 = return_aws_object
-		# 	songs = {}
-		# 	song_count.times do |number|
-		# 		songs[number] = s3.buckets["#{Rails.env.to_s}_songs"].objects["#{user_id}_song#{number}"].url_for(:get)
-		# 	end
-		# 	songs
-		# end
+		# remove a song from the song bucket
+		# get the properly indexed song and delete it
+		# rename all songs indexed above the deleted song one number lower
+		def self.remove_song(user_id, song_number)
+			s3 = return_aws_object
+			s3.buckets["#{Rails.env.to_s}_songs"].objects["#{user_id}_song#{song_number}"].delete
+
+			number_songs_to_rename.times do |number|
+				if s3.buckets["#{Rails.env.to_s}_songs"].objects["#{user_id}_song#{song_number + number}"].exists?
+					s3.buckets["#{Rails.env.to_s}_songs"].objects["#{user_id}_song#{song_number + number}"].move_to("#{user_id}_song#{song_number + number - 1}")
+				end
+			end
+		end
 
 		private
 		def sanitize_filename(file_name)
 		    just_filename = File.basename(file_name)
 		    just_filename.sub(/[^\w\.\-]/,'_')
+		end
+
+		def number_songs_to_rename(song_number)
+			5 - song_number
 		end
 	end
 end
