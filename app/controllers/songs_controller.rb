@@ -20,7 +20,7 @@ class SongsController < ApplicationController
 										 song_number: user.uploaded_songs)
 
 			user.save
-			success_message
+			success_message "Thank you for uploading some audio!"
 		else
 			failure_message(mp3, under_five)
 		end
@@ -44,10 +44,15 @@ class SongsController < ApplicationController
 	# remove the song from the user's library
 	def remove
 		user = User.find_by_id(params[:id])
+
 		urls = Jammer::Uploader.remove_song(user.id, params[:song_number])
 		user.remove_song(params[:song_number], urls)
+
 		user.uploaded_songs -= 1
 		user.save
+
+		success_message "Song successfully removed!"
+
 		redirect_to songs_musician_path(current_user)
 	end
 
@@ -64,8 +69,8 @@ class SongsController < ApplicationController
 		params.key?(:user)
 	end
 
-	def success_message
-		flash[:success] = "Thank you for uploading some audio!"
+	def success_message(message)
+		flash[:success] = message
 	end
 
 	def failure_message(mp3, under_five)
