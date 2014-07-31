@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
   # before_action :authenticate_user!
 
   # whenever we are on a devise controller, change the permitted parameters
+  # also, authenticate the user before all actions except welcome page
   before_filter :configure_permitted_parameters, if: :devise_controller?
   before_filter :authenticate_user!, except: [:index]
 

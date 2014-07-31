@@ -10,8 +10,7 @@ class Message < ActiveRecord::Base
   # a message has many replies. 
   has_many :replies
 
-  attr_accessible :return_email, # this will be used if whoever is contacting the musician has no account
-                  :subject,
+  attr_accessible :subject,
   								:message_body,
   								:lesson_request,
   								:jam_request,
@@ -24,7 +23,6 @@ class Message < ActiveRecord::Base
   validates :booking_request, presence: true, if: "jam_request.nil? && lesson_request.nil?"
   validates :message_body, presence: true
   validates :subject, presence: true
-  validates :return_email, presence: true, if: "sent_by.nil?"
 
   # returns an array of first names of the users associated with this
   # message
@@ -41,27 +39,19 @@ class Message < ActiveRecord::Base
 
   # returns the name of the user who sent the message
   def sender
-    if sent_by
-      user = User.find_by_id(sent_by)
-      "#{user.first_name} #{user.last_name}"
-    else
-      return_email
-    end
+    user = User.find_by_id(sent_by)
+    "#{user.first_name} #{user.last_name}"
   end
 
   # first name of the message sender
   def first_name
-    sent_by ? user = User.find_by_id(sent_by).first_name : return_email
+    user = User.find_by_id(sent_by).first_name
   end
 
   # returns the url to the avatar of the sender
   def sender_picture
-    if sent_by
-      user = User.find_by_id(sent_by)
-      user.avatar_url
-    else
-      "/assets/no_avatar.png"
-    end
+    user = User.find_by_id(sent_by)
+    user.avatar_url
   end
 
   # returns the type of message

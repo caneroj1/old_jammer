@@ -11,12 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140726042536) do
+ActiveRecord::Schema.define(version: 20140731014035) do
 
   create_table "messages", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "return_email"
     t.text     "message_body"
     t.boolean  "lesson_request"
     t.boolean  "booking_request"
