@@ -60,3 +60,5 @@ gem 'figaro'
 gem 'aws-sdk', '> 1.3.4'
 # carrierwave support for aws
 gem "fog", "~> 1.3.1"
+# mediaelement js for video support
+gem 'mediaelement_rails'

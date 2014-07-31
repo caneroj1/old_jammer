@@ -4,7 +4,7 @@ class MusiciansController < ApplicationController
 	# before updating, processing the params hash
 	# in order to organize the genres that may have been submitted
 	before_filter :process_genres, :only => [:update] 
-
+	before_filter :return_to_current_user, :only => [:song, :messages]
 
 	# get the user object as specified by the id in params
 	def show
@@ -104,5 +104,11 @@ class MusiciansController < ApplicationController
 			new_str << genre << " " if musician.genres[genre].nil?
 		end
 		new_str
+	end
+
+	# this will convert the parameter id to that of the current user if it isn't
+	# this will prevent users from seeing other users' messages and songs
+	def return_to_current_user
+		params[:id] = params[:id].eql?(current_user.id) ? params[:id] : current_user.id
 	end
 end

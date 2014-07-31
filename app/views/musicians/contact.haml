@@ -42,5 +42,5 @@
 						.form-group
 							%h4 Who is this from?
 							.form-group
-								= text_field_tag(:return_email, "Please enter your email address...", class: "form-control")
+								= f.text_field(:return_email, placeholder: "Please enter your email", class: "form-control")
 					= f.submit "Send", class: "btn btn-info btn-block"
