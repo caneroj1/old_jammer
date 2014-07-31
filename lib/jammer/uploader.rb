@@ -39,25 +39,25 @@ module Jammer
 		# remove a song from the song bucket
 		# get the properly indexed song and delete it
 		# rename all songs indexed above the deleted song one number lower
+		# returns the new urls for the renamed objects
 		def self.remove_song(user_id, song_number)
 			s3 = return_aws_object
 			s3.buckets["#{Rails.env.to_s}_songs"].objects["#{user_id}_song#{song_number}"].delete
 
-			number_songs_to_rename.times do |number|
-				if s3.buckets["#{Rails.env.to_s}_songs"].objects["#{user_id}_song#{song_number + number}"].exists?
-					s3.buckets["#{Rails.env.to_s}_songs"].objects["#{user_id}_song#{song_number + number}"].move_to("#{user_id}_song#{song_number + number - 1}")
+			new_urls = []
+			(5 - song_number.to_i).times do |number|
+				if s3.buckets["#{Rails.env.to_s}_songs"].objects["#{user_id}_song#{song_number.to_i + number.to_i}"].exists?
+					s3.buckets["#{Rails.env.to_s}_songs"].objects["#{user_id}_song#{song_number.to_i + number}"].move_to("#{user_id}_song#{song_number.to_i + number - 1}")
+					new_urls << s3.buckets["#{Rails.env.to_s}_songs"].objects["#{user_id}_song#{song_number.to_i + number - 1}"].url_for(:get, expires: "Jan 2030")
 				end
 			end
+			new_urls
 		end
 
 		private
 		def sanitize_filename(file_name)
 		    just_filename = File.basename(file_name)
 		    just_filename.sub(/[^\w\.\-]/,'_')
-		end
-
-		def number_songs_to_rename(song_number)
-			5 - song_number
 		end
 	end
 end

@@ -16,6 +16,6 @@
 						= "Uploaded #{song.created_at.strftime('%-m/%d')}"
 				%audio{ controls: true }
 					%source{ src: song.url, type: "audio/mp3" }
-				%a.remove
+				= link_to song_remove_musician_path(id: current_user.id, song_number: song.song_number), method: :post, class: :remove do
 					%span.glyphicon.glyphicon-remove 
 					Remove
