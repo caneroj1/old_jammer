@@ -74,7 +74,7 @@ class Message < ActiveRecord::Base
   # if the message has no replies, it is the time this message was created
   # otherwise it is the time of creation of the last reply
   def last_active_time
-    time = replies.any? ? replies.last.created_at : created_at
+    time = replies.any? ? replies.last.created_at.localtime : created_at.localtime
     time.strftime("%-m/%d/%Y, %l:%M, %P")
   end
 end

@@ -23,6 +23,10 @@ FactoryGirl.define do
 			lessons true
 		end
 
+		trait :has_avatar do
+			avatar { Faker::Internet.url }
+		end
+
 		factory :user_with_a_song do
 			after(:create) do |user|
 				user.songs << FactoryGirl.create(:song)
