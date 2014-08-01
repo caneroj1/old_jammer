@@ -29,5 +29,14 @@ FactoryGirl.define do
 				message.users << FactoryGirl.create(:user)
 			end
 		end
+
+		factory :message_with_users do
+			after(:create) do |message|
+				u1 = FactoryGirl.build(:user, :has_avatar, first_name: "joe", last_name: "canero")
+				u2 = FactoryGirl.build(:user, :has_avatar, first_name: "john", last_name: "bobby")
+				message.users << u1 << u2
+				message.sent_by = u1.id
+			end
+		end
 	end
 end

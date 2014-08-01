@@ -4,11 +4,12 @@
 			.col-xs-12
 				%h1
 					Ready to Jam? 
-				.col-xs-10.col-xs-offset-1.hold-em
-					.col-xs-6.text-left.link
-						= link_to "Sign Up", "#", :data => { toggle: "modal", target: "#sign_up" }
-					.col-xs-6.text-right.link
-						= link_to "Log In", "#", :data => {toggle: "modal" , target: "#log_in" }
+				- if !user_signed_in?
+					.col-xs-10.col-xs-offset-1.hold-em
+						.col-xs-6.text-left.link
+							= link_to "Sign Up", "#", :data => { toggle: "modal", target: "#sign_up" }
+						.col-xs-6.text-right.link
+							= link_to "Log In", "#", :data => {toggle: "modal" , target: "#log_in" }
 			- if user_signed_in?
 				.col-xs-10.col-xs-offset-1
 					= form_tag("/search", method: :get) do
