@@ -8,10 +8,7 @@
 				.col-xs-6.song-list
 					%h2 Song List
 					%hr
-					- count = @musician.songs.each do |song|
-						= render partial: "partials/songs/song", locals: { song: song }
-					- if count.empty?
-						%p You have not uploaded any songs. Use the form to the right to upload them!
+					= render partial: "partials/songs/song_list", locals: { page: "songs" }
 				.col-xs-6.song-list
 					%h2 Upload a New Song
 					= render partial: "partials/songs/flashes"
