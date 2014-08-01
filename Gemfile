@@ -62,3 +62,17 @@ gem 'aws-sdk', '> 1.3.4'
 gem "fog", "~> 1.3.1"
 # mediaelement js for video support
 gem 'mediaelement_rails'
+
+
+group :development, :test do 
+	gem 'rspec-rails' 
+	gem 'factory_girl_rails' 
+end 
+
+group :test do 
+	gem 'faker' 
+	gem 'capybara' 
+	gem 'guard-rspec' 
+	gem 'launchy' 
+end 
+
