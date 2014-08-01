@@ -3,6 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 @import "variables";
+@import "mixins";
 
 html, body, .container-fluid, .row, .left-info {
 	height: 100%;
@@ -272,4 +273,8 @@ table {
 
 .failure {
 	color: $state-danger-text;
+}
+
+.section-header {
+	font-size: 44px;
 }

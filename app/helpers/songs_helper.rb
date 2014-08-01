@@ -29,4 +29,12 @@ module SongsHelper
 			end
 		end
 	end
+
+	def empty_song_content(empty, page)
+		if page.eql?("songs")
+			empty ? content_tag(:p, "You have not uploaded any songs. Use the form to the right to upload them") : ""
+		else
+			empty ? content_tag(:h3, "No songs have been uploaded yet.") : ""
+		end
+	end
 end
