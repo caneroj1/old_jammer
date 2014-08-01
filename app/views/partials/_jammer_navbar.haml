@@ -15,6 +15,7 @@
 						= link_to "#{current_user.first_name}'s Profile", musician_path(current_user)
 					%li.dropdown
 						%a{href: "#", class: "dropdown-toggle", data: { toggle: "dropdown" } }
+							/ = new_messages?
 							%span.caret
 						%ul.dropdown-menu
 							%li 

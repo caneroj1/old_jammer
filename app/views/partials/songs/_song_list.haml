@@ -1,0 +1,4 @@
+- count = @musician.songs.each do |song|
+	= render partial: "partials/songs/song", locals: { song: song, page: page }
+- if count.empty?
+	%p You have not uploaded any songs. Use the form to the right to upload them!

@@ -4,18 +4,13 @@
 			%td.thumb-container
 				.thumb
 					.picture-box
-						%p.picture-inside 
-							= link_to "Upload", "#", :data => { toggle: "modal", target: "#upload-thumb", number: song.song_number }, class: :pic_link
-							%span.glyphicon.glyphicon-camera.span_pic
+						= show_img_upload?(page, song)
 					= image_tag song.thumb.url, class: "image-thumbnail"
 			%td.song-container
 				%h3.song-name
 					= song.song_name
 					%br
-					%small
-						= "Uploaded #{song.created_at.strftime('%-m/%d')}"
+					= uploaded?(page, song)
 				%audio{ controls: true }
 					%source{ src: song.url, type: "audio/mp3" }
-				= link_to song_remove_musician_path(id: current_user.id, song_number: song.song_number), method: :post, class: :remove do
-					%span.glyphicon.glyphicon-remove 
-					Remove
+				= remove_link?(page, song)
