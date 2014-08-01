@@ -1,5 +1,3 @@
-require 'faker'
-
 describe Reply do
 	let(:reply) { FactoryGirl.build(:reply) }
 
