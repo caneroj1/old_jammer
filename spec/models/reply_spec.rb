@@ -1,3 +1,5 @@
+require 'faker'
+
 describe Reply do
 	let(:reply) { FactoryGirl.build(:reply) }
 
@@ -11,5 +13,17 @@ describe Reply do
 
 	it 'has a sent by attribute' do
 		expect(reply.sent_by.class).to eq(Fixnum)
+	end
+
+	context 'class methods' do
+		let(:reply_two) { FactoryGirl.create(:reply_with_sender) }
+
+		it '#sent_name returns the first name of the user who sent the message' do
+			expect(reply_two.sent_name).to eq("joe")
+		end
+
+		it '#sender_picture returns the avatar url of the sender' do
+			expect(reply_two.sender_picture.class).to eq(Faker::Internet.url.class)
+		end
 	end
 end
