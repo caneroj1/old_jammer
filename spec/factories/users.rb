@@ -16,7 +16,7 @@ FactoryGirl.define do
 		end
 
 		trait :has_genres do
-			genres "Rock, Classical, World"
+			genres "Rock,Classical,World"
 		end
 
 		trait :can_give_lessons do
@@ -30,6 +30,22 @@ FactoryGirl.define do
 		factory :user_with_a_song do
 			after(:create) do |user|
 				user.songs << FactoryGirl.create(:song)
+			end
+		end
+
+		factory :user_with_multiple_songs do
+			after(:create) do |user|
+				5.times do |index|
+					user.songs << FactoryGirl.create(:song, song_name: "Big Song #{index + 1}", song_number: index + 1)
+				end
+			end
+		end
+
+		factory :user_with_three_songs do
+			after(:create) do |user|
+				3.times do |index|
+					user.songs << FactoryGirl.create(:song, song_name: "My Song #{index + 1}", song_number: index + 1, url: "song#{index + 1}_url")
+				end
 			end
 		end
 	end
