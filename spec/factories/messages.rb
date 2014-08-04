@@ -38,5 +38,12 @@ FactoryGirl.define do
 				message.sent_by = u1.id
 			end
 		end
+
+		factory :message_with_reply do
+			after(:create) do |message|
+				reply = FactoryGirl.build(:reply)
+				message.replies << reply
+			end
+		end
 	end
 end
