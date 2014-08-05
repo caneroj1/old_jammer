@@ -1,5 +1,3 @@
-include Devise::TestHelpers
-
 describe MessagesController do
 	describe "#create" do
 		let (:user) { FactoryGirl.create(:user) }

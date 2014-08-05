@@ -1,5 +1,3 @@
-require 'faker'
-
 FactoryGirl.define do
 	factory :reply do
 		sent_by { Faker::Number.digit }
