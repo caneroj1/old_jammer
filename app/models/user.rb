@@ -27,7 +27,8 @@ class User < ActiveRecord::Base
                   :reset_password_token,
                   :password_confirmation,
                   :g1, :g2, :g3, :g4, :g5,
-                  :uploaded_songs         # right now, a user can have up to 5 songs
+                  :uploaded_songs,         # right now, a user can have up to 5 songs
+                  :reset_password_token
 
   validates :first_name,  presence: true
   validates :last_name,   presence: true
