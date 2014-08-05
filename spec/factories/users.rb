@@ -48,5 +48,9 @@ FactoryGirl.define do
 				end
 			end
 		end
+
+		factory :invalid_user do
+			first_name ""
+		end
 	end
 end
