@@ -1,3 +1,5 @@
+require 'faker'
+
 FactoryGirl.define do
 	factory :song do
 		song_name "#{Faker::Name.first_name}'s Big Song"
