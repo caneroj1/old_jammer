@@ -128,10 +128,12 @@ fill_in_field = ->
 	$('.pic_link').bind 'click', ->
 		$('#song_number').val($(this).data("number"))
 
-## this will display the loading gif when uploading a song
+# when the upload a song form is submitted, intercept the action, display the loader, and then
+# submit the form
 display_loader = ->
-	$('#song_upload').on 'click', ->
-		$('.loader').show()
+	$('.upload-song').submit ->
+		$('.loader').css('display', 'block')
+		$(this)[0].submit
 
 $ ->
 	# redo the file select buttons to be more inline with the theme of the site
@@ -144,6 +146,7 @@ $ ->
 	setInterval(password_check, 100)	# check if the user entered anything in the password field every 100 ms
 	$('.msg-link').on 'click', get_message
 	$('p.success, p.failure').fadeOut(6000)
+
 
 
 

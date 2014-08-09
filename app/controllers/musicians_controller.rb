@@ -19,7 +19,7 @@ class MusiciansController < ApplicationController
 	def update
 		@musician = User.find_by_id(params[:id])
 		updated = ""
-
+	
 		# is the user changing their lesson giving status?
 		if params[:user].key?(:lessons)
 			@musician.lessons = params[:user][:lessons]
@@ -28,6 +28,11 @@ class MusiciansController < ApplicationController
 		elsif params[:user].key?(:statement)
 			@musician.statement = params[:user][:statement]
 			updated = "statement"
+		# update the user's location info
+		elsif params[:user].key?(:hidden)
+			params[:user].delete(:hidden)
+			@musician.update_attributes(params[:user])
+			updated = "location"
 		# update the user's genres
 		elsif params[:user].key?(:genres)
 			# results stores the concatenation of the genres submitted from the form
