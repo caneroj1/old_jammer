@@ -1,0 +1,19 @@
+%h3 
+  Changed your location?
+%p
+  Seeing how Jammerr wants to help you find musicians in your area, it's important to have the most up to date location information.
+= form_for(@musician, url: musician_path(@musician), method: :patch, remote: true, html: { id: "location" }) do |f|
+  = f.hidden_field :hidden, value: "location"
+  .form-group
+    = f.label :street
+    = f.text_field :street, class: "form-control"
+  .col-xs-12.location
+    .form-group.city
+      = f.label :city
+      = f.text_field :city, class: "form-control"
+    .form-group.state
+      = f.label :state
+      = f.select(:state, @state_list)
+  .col-xs-8.location
+    .form-group 
+      = f.submit :Update, class: "btn btn-primary", id: "styles"

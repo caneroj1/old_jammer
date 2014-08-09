@@ -278,3 +278,22 @@ table {
 .section-header {
 	font-size: 44px;
 }
+
+#user_street {
+	width: 63%;
+}
+
+.location {
+	padding-left: 0;
+}
+
+.city {
+	width: 50%;
+	display: inline-block;
+}
+
+.state {
+	width: 15%;
+	margin-left: 5%;
+	display: inline-block;
+}

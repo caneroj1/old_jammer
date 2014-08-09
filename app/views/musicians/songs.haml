@@ -6,7 +6,9 @@
 				%h1 Your Music
 			.well.songs
 				.col-xs-6.song-list
-					%h2 Song List
+					%h2 
+						Song List
+						%small= "#{current_user.uploaded_songs} songs"
 					%hr
 					= render partial: "partials/songs/song_list", locals: { page: "songs" }
 				.col-xs-6.song-list
@@ -18,4 +20,4 @@
 						= f.submit "Upload Song", class: "btn btn-info btn-block", id: :song_upload
 					.col-xs-6.col-xs-offset-3.loader
 						%h4 Uploading
-						= image_tag "song_loader.gif"
+						= image_tag "song_loader.gif", class: "loading-image"

@@ -1,16 +1,20 @@
 <% if params[:updated].eql?("lessons") %>
 	<% if @musician.lessons?[2] %>
 		$("#lesson").before("<p class='text-success yes'>Your profile now reflects your interest in giving lessons.</p>")
-		$(".yes").fadeOut(6000)
+		$(".yes").fadeOut(2500)
 	<% else %>
 		$("#lesson").before("<p class='text-danger no'>Your profile no longer displays your interest in giving lessons.</p>")
-		$(".no").fadeOut(6000)
+		$(".no").fadeOut(2500)
 	<% end %>
 <% elsif params[:updated].eql?("statement") %>
 	$("#statement").before("<p class='text-success state'>Your statement has been successfully updated.</p>")
-	$(".state").fadeOut(6000)
+	$(".state").fadeOut(2500)
 <% elsif params[:updated].eql?("genres") %>
 	$("#genres").before("<p class='text-success genres'>Your genres have been successfully updated.</p>")
-	$(".genres").fadeOut(6000)
+	$(".genres").fadeOut(2500)
 	$('.gen').val('')
+<% elsif params[:updated].eql?("location") %>
+	$("#location").before("<p class='text-success loc'>Your location has been successfully updated.</p>")
+	$(".loc").fadeOut(2500)
+	$('.loc').val('')
 <% end %>

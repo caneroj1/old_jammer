@@ -17,6 +17,7 @@ class UsersController < Devise::RegistrationsController
 
 	def edit
     @musician = User.find_by_id(current_user)
+    @state_list = state_list
 		respond_to do |format|
       format.html { render :edit }
       format.js {}
