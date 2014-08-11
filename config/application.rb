@@ -22,17 +22,17 @@ module Jammer
     config.assets.compile = true
     config.autoload_paths << Rails.root.join('lib')
     config.cache_store = :redis_store, 'redis://localhost:6379/0/cache', { expires_in: 90.minutes }
-    
+
     config.generators do |g| 
-    g.test_framework :rspec, 
-        :fixtures => true, 
-        :view_specs => false, 
-        :helper_specs => false, 
-        :routing_specs => false, 
-        :controller_specs => true, 
-        :request_specs => true 
-    g.fixture_replacement :factory_girl, 
-        :dir => "spec/factories" 
+        g.test_framework :rspec, 
+            :fixtures => true, 
+            :view_specs => false, 
+            :helper_specs => false, 
+            :routing_specs => false, 
+            :controller_specs => true, 
+            :request_specs => true 
+        g.fixture_replacement :factory_girl, 
+            :dir => "spec/factories"     
     end
   end
 end

@@ -65,6 +65,11 @@ gem 'mediaelement_rails'
 gem 'redis-rails' # Will install several other redis-* gems
 gem 'redis-namespace'
 
+# needed to use Faye
+gem 'thin'
+# faye will be used to support real time chat
+gem 'faye', require: 'faye'
+
 group :development, :test do 
 	gem 'rspec-rails' 
 	gem 'factory_girl_rails' 
