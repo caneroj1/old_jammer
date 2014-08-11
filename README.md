@@ -1,26 +1,27 @@
-to install imagemagick
+<p>to install imagemagick</p>
 
-brew install imagemagick -- with homebrew
+<p>brew install imagemagick -- with homebrew</p>
 
-for getting to the aws console
+<p>for getting to the aws console</p>
 https://console.aws.amazon.com/iam/home
 
-if nokogiri doesn't install, use
-xcode-select --install 
+<p>if nokogiri doesn't install, use</p>
+<strong>xcode-select --install</strong>
 
-USING REDIS:
-installing most recent version of redis
+<h2>USING REDIS:<h2>
+<p>installing most recent version of redis<p>
 
-go to: http://redis.io/download
-	- get v 2.8.13
+<p>go to: http://redis.io/download<p>
+	<strong>- get v 2.8.13</strong>
 
-unzip the file
-follow these terminal commands:
-cd redis-2.8.13
-make
-cp src/redis-server src/redis-cli /usr/bin
+<p>unzip the file</p>
+<ul>follow these terminal commands:
+<li>cd redis-2.8.13</li>
+<li>make</li>
+<li>cp src/redis-server src/redis-cli /usr/bin</li>
+</ul>
 
-then you should be good to go!
+<p>then you should be good to go!</p>
 
-to start redis:
-redis-server
+<h2>to start redis:<h2>
+<p>redis-server<p>
