@@ -8,7 +8,7 @@ https://console.aws.amazon.com/iam/home
 <p>if nokogiri doesn't install, use</p>
 <strong>xcode-select --install</strong>
 
-<h2>USING REDIS:<h2>
+<h2>USING REDIS:</h2>
 <p>installing most recent version of redis<p>
 
 <p>go to: http://redis.io/download<p>
@@ -23,5 +23,5 @@ https://console.aws.amazon.com/iam/home
 
 <p>then you should be good to go!</p>
 
-<h2>to start redis:<h2>
+<h2>to start redis:</h2>
 <p>redis-server<p>
