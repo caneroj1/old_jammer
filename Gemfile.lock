@@ -29,7 +29,7 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.3.6)
     arel (5.0.1.20140414130214)
-    autoprefixer-rails (2.2.0.20140727)
+    autoprefixer-rails (2.2.0.20140804)
       execjs
     awesome_print (1.2.0)
     aws-sdk (1.50.0)
@@ -171,6 +171,25 @@ GEM
       ffi (>= 0.5.0)
     rdoc (4.1.1)
       json (~> 1.4)
+    redis (3.1.0)
+    redis-actionpack (4.0.0)
+      actionpack (~> 4)
+      redis-rack (~> 1.5.0)
+      redis-store (~> 1.1.0)
+    redis-activesupport (4.0.0)
+      activesupport (~> 4)
+      redis-store (~> 1.1.0)
+    redis-namespace (1.5.1)
+      redis (~> 3.0, >= 3.0.4)
+    redis-rack (1.5.0)
+      rack (~> 1.5)
+      redis-store (~> 1.1.0)
+    redis-rails (4.0.0)
+      redis-actionpack (~> 4)
+      redis-activesupport (~> 4)
+      redis-store (~> 1.1.0)
+    redis-store (1.1.4)
+      redis (>= 2.2)
     ref (1.0.5)
     rmagick (2.13.3)
     rspec (3.0.0)
@@ -225,7 +244,7 @@ GEM
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
-    tzinfo (1.2.1)
+    tzinfo (1.2.2)
       thread_safe (~> 0.1)
     uglifier (2.5.3)
       execjs (>= 0.3.0)
@@ -259,6 +278,8 @@ DEPENDENCIES
   mediaelement_rails
   protected_attributes
   rails (= 4.1.1)
+  redis-namespace
+  redis-rails
   rmagick
   rspec-rails
   sass-rails (~> 4.0.3)
