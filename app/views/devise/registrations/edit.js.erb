@@ -7,8 +7,8 @@
 		$(".no").fadeOut(2500)
 	<% end %>
 <% elsif params[:updated].eql?("statement") %>
-	$("#statement").before("<p class='text-success state'>Your statement has been successfully updated.</p>")
-	$(".state").fadeOut(2500)
+	$("#statement").before("<p class='text-success statement'>Your statement has been successfully updated.</p>")
+	$(".statement").fadeOut(2500)
 <% elsif params[:updated].eql?("genres") %>
 	$("#genres").before("<p class='text-success genres'>Your genres have been successfully updated.</p>")
 	$(".genres").fadeOut(2500)

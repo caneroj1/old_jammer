@@ -73,6 +73,9 @@ gem 'faye', require: 'faye'
 group :development, :test do 
 	gem 'rspec-rails' 
 	gem 'factory_girl_rails' 
+	# for debugging of errors and more informative error pages
+  gem "better_errors"
+  gem "binding_of_caller"
 end 
 
 group :test do 

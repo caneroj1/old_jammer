@@ -12,41 +12,10 @@
 			.tab-content
 				.tab-pane.active#sent
 					%ul.list-unstyled
-						- sent_arr = @messages.select{ |m| m.sent_by.eql?(current_user.id) }.sort_by! { |m| m.created_at}.each do |msg|
-							%li.text-center.msg-info-row
-								%table
-									%tr
-										%td.left-cell
-											%h3.subject
-												%a{class: "msg-link", data: { id: msg.id } }
-													= msg.subject.nil? ? "Subject Blank" : msg.subject
-											%p.date= "Sent: #{msg.created_at.strftime("%l:%M")} on #{msg.created_at.strftime("%d/%-m/%Y")}"
-										%td
-											%div
-												= image_tag msg.receiver_picture, class: "img-circle msg-pic"
-											.name-or-date
-												= "#{msg.receiver.first_name} #{msg.receiver.last_name}"
-						- if sent_arr.count.eql? 0
-							%h5 You have not sent any messages.
+						= render partial: "partials/message/list_of_messages", locals: { receiving: false }
 				.tab-pane#received
 					%ul.list-unstyled
-						- rec_arr = @messages.select{ |m| !m.sent_by.eql?(current_user.id) }.sort_by! { |m| m.created_at}.each do |msg|
-							%li.text-center.msg-info-row
-								%table
-									%tr
-										%td.left-cell
-											%h3.subject
-												%a{class: "msg-link", data: { id: msg.id } }
-													= msg.subject.nil? ? "Subject Blank" : msg.subject
-											%p.sender= "From: #{msg.sender}"
-											%p.date= "Sent: #{msg.created_at.strftime("%d/%-m/%Y")}"
-										%td
-											%div
-												= image_tag msg.sender_picture, class: "img-circle msg-pic"
-												.name-or-date
-													= msg.sender
-						- if rec_arr.count.eql? 0
-							%h5 You have not received any messages.
+						= render partial: "partials/message/list_of_messages", locals: { receiving: true }
 		.col-xs-8.left-info#message-pane
 			%h2.text-center.not-selected Select one of your messages from the left.
 			= image_tag "loader.gif", class: "hidden-loader"
