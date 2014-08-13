@@ -1,0 +1,16 @@
+.song
+	%table
+		%tr
+			%td.thumb-container
+				.thumb
+					.picture-box
+						= show_img_upload?(page, song)
+					= image_tag song.thumb.url, class: "image-thumbnail"
+			%td.song-container
+				%h3.song-name
+					= song.song_name
+					%br
+					= uploaded?(page, song)
+				%audio{ controls: true }
+					%source{ src: song.url, type: "audio/mp3" }
+				= remove_link?(page, song)

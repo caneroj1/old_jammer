@@ -1,0 +1,21 @@
+= javascript_include_tag "messages"
+.container-fluid
+	.row
+		.col-xs-4.left-info.well#before-message
+			%h1.text-center Messages
+			%ul.nav.nav-pills.nav-justified
+				%li.active
+					%a{href: "#sent", data: { toggle: :tab } } Sent
+				%li
+					%a{href: "#received", data: { toggle: :tab } } Received
+			%hr
+			.tab-content
+				.tab-pane.active#sent
+					%ul.list-unstyled
+						= render partial: "partials/message/list_of_messages", locals: { receiving: false }
+				.tab-pane#received
+					%ul.list-unstyled
+						= render partial: "partials/message/list_of_messages", locals: { receiving: true }
+		.col-xs-8.left-info#message-pane
+			%h2.text-center.not-selected Select one of your messages from the left.
+			= image_tag "loader.gif", class: "hidden-loader"

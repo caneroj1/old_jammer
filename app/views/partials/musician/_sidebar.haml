@@ -1,0 +1,24 @@
+%ul.list-unstyled
+	%li
+		%h4{class: musician.lessons?[1]}= musician.lessons?[0]
+	%li 
+		%h4 
+			Plays
+			%small= musician.instrument
+	%li
+		%h4
+			Based at
+			%small= "#{musician.street}, #{musician.city} #{musician.state}"
+	- if !@musician.genres.eql?("")
+		%li
+			%h4 
+				Prefers
+				%small= "#{@musician.neat_genres}"
+	- if !@musician.statement.nil?
+		%li
+			%h4
+				= "About #{@musician.first_name}"
+				%small= "#{@musician.statement}"
+	%li
+		= link_to "Contact #{musician.first_name}", contact_musician_path(musician), class: "btn btn-primary btn-block" if link_to_contact?(musician)
+		= link_to "Update your Profile",   edit_registration_path(musician), class: "btn btn-info btn-block" if user_signed_in? && musician.id.eql?(current_user.id)

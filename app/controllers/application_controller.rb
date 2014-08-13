@@ -7,7 +7,9 @@ class ApplicationController < ActionController::Base
   # before_action :authenticate_user!
 
   # whenever we are on a devise controller, change the permitted parameters
+  # also, authenticate the user before all actions except welcome page
   before_filter :configure_permitted_parameters, if: :devise_controller?
+  before_filter :authenticate_user!, except: [:index]
 
   ## these three methods are necessary to get devise forms on any page
 	def resource_name
@@ -35,7 +37,8 @@ class ApplicationController < ActionController::Base
 
   # return a list of instruments to be put into select dropdown forms easily
   def instrument_list
-    ["Drums", "Guitar", "Bass", "Vocals", "Piano"].sort_by { |u| u.downcase }
+    ["Drumset", "Electric Guitar", "Acoustic Guitar", "Bass", "Vocals", "Piano", "Alto Saxophone", "Tenor Saxophone", "Soprano Saxophone",
+    "Baritone Saxophone", "Flute", "Violin", "Viola", "Cello", "Trumpet", "Clarinet", "Percussion", "Tuba", "Piccolo"].sort_by { |u| u.downcase }
   end
 
   protected

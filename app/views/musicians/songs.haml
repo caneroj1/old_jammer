@@ -1,0 +1,23 @@
+= render partial: "partials/songs/upload_thumb"
+.container-fluid.smoke
+	.row
+		.col-xs-8.col-xs-offset-2.content
+			.page-header.text-center
+				%h1 Your Music
+			.well.songs
+				.col-xs-6.song-list
+					%h2 
+						Song List
+						%small= "#{current_user.uploaded_songs} songs"
+					%hr
+					= render partial: "partials/songs/song_list", locals: { page: "songs" }
+				.col-xs-6.song-list
+					%h2 Upload a New Song
+					= render partial: "partials/songs/flashes"
+					= form_for(@musician, url: song_upload_musician_path(current_user.id), method: :post, html: { class: "upload-song" } ) do |f|
+						.form-group.song-form
+							= f.file_field "song_file", class: "form-control avatar", data: { :filename_placement => "inside" }
+						= f.submit "Upload Song", class: "btn btn-info btn-block", id: :song_upload
+					.col-xs-6.col-xs-offset-3.loader
+						%h4 Uploading
+						= image_tag "loader.gif", class: "loading-image"

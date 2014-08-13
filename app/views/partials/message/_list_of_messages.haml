@@ -1,0 +1,30 @@
+- if !receiving
+	- msg_arr = @messages.select{ |m| m.sent_by.eql?(current_user.id) }
+- else
+	- msg_arr = @messages.select{ |m| !m.sent_by.eql?(current_user.id) }
+
+- msg_arr.sort_by! { |m| m.created_at}.each do |msg|
+	%li.text-center.msg-info-row
+		%table
+			%tr
+				%td.left-cell
+					%h3.subject
+						%a{class: "msg-link", data: { id: msg.id } }
+							= msg.subject.nil? ? "Subject Blank" : msg.subject
+					%p.date= "Sent: #{msg.created_at.strftime("%l:%M")} on #{msg.created_at.strftime("%d/%-m/%Y")}"
+				%td
+					%div
+						- if !receiving
+							= image_tag msg.receiver_picture, class: "img-circle msg-pic"
+						- else
+							= image_tag msg.sender_picture, class: "img-circle msg-pic"
+					.name-or-date
+						- if !receiving
+							= link_to "#{msg.receiver.first_name} #{msg.receiver.last_name}", musician_path(msg.receiver.id)
+						- else
+							= link_to "#{msg.sender}", musician_path(msg.sent_by)
+- if msg_arr.count.eql? 0
+	- if !receiving
+		%h5= "You have not sent any messages." 
+	- else
+		%h5= "You have not received any messages." 

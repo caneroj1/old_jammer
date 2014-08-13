@@ -2,16 +2,16 @@
 <html>
 <head>
   <title>Jammer</title>
+  <%= stylesheet_link_tag 'application', media: 'all'%>
 
-  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= stylesheet_link_tag params[:controller] %>
+  <%= javascript_include_tag 'application' %>
 
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag params[:controller] %>
-  <%= yield :devise_forms if :devise_controler? %>
+  <%= yield :devise_forms if :devise_controller? %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+	
+<%= render partial: "partials/jammer_navbar", locals: { display: user_signed_in? } %>
 
 <% if notice && params[:controller].eql?("welcome") %>
 	<p class="notice" id="notice"><%= notice %></p>

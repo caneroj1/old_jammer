@@ -1,2 +1,2 @@
-Rails.application.config.assets.precompile += %w( welcome.css )
-Rails.application.config.assets.precompile += %w( welcome.js )
+Rails.application.config.assets.precompile += %w( welcome.css musicians.css messages.css replies.css songs.css)
+Rails.application.config.assets.precompile += %w( welcome.js musicians.js messages.js replies.js songs.js)

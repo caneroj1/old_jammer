@@ -11,15 +11,56 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140704002118) do
+ActiveRecord::Schema.define(version: 20140731014035) do
+
+  create_table "messages", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.text     "message_body"
+    t.boolean  "lesson_request"
+    t.boolean  "booking_request"
+    t.boolean  "jam_request"
+    t.integer  "sent_by"
+    t.string   "subject"
+  end
+
+  create_table "messages_users", id: false, force: true do |t|
+    t.integer "user_id"
+    t.integer "message_id"
+  end
+
+  create_table "replies", force: true do |t|
+    t.text     "reply_body"
+    t.integer  "sent_by"
+    t.integer  "message_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "songs", force: true do |t|
+    t.string   "song_name"
+    t.string   "url"
+    t.integer  "song_number"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "thumb"
+  end
+
+  create_table "songs_tables", force: true do |t|
+    t.text    "song_name"
+    t.text    "url"
+    t.integer "song_number"
+    t.integer "user_id"
+  end
 
   create_table "users", force: true do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "email",                  default: "",    null: false
+    t.string   "encrypted_password",     default: "",    null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -32,6 +73,17 @@ ActiveRecord::Schema.define(version: 20140704002118) do
     t.string   "street"
     t.string   "city"
     t.string   "state"
+    t.string   "avatar"
+    t.boolean  "uploaded",               default: false
+    t.boolean  "lessons",                default: false
+    t.text     "statement"
+    t.text     "genres",                 default: ""
+    t.string   "g1"
+    t.string   "g2"
+    t.string   "g3"
+    t.string   "g4"
+    t.string   "g5"
+    t.integer  "uploaded_songs",         default: 0
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

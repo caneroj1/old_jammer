@@ -1,0 +1,3 @@
+- count = @musician.songs.each do |song|
+	= render partial: "partials/songs/song", locals: { song: song, page: page }
+= empty_song_content(count.empty?, page)

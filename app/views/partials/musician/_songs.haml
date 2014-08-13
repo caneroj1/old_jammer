@@ -1,0 +1,6 @@
+.col-xs-6.col-xs-offset-3
+	%h1.text-center.section-header
+		= "Songs"
+		%hr
+.col-xs-12
+	= render partial: "partials/songs/song_list", locals: { page: "show" }

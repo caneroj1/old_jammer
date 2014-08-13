@@ -1,0 +1,24 @@
+.col-xs-4.well.left-info
+  %h2= "Edit Account Information"
+  = form_for(@musician, url: registration_path(resource_name), html: { method: :put }) do |f| 
+    = content_for_email_errors
+    .form-group
+      =f.label :change_email
+      =f.email_field :email, class: "form-control",:value => current_user.email
+    =f.submit "Update Email", class: "btn btn-primary btn-block"
+  %hr
+  = form_for(@musician, url: password_change_path, html: { method: :put }) do |f| 
+    = content_for_password_errors
+    = f.hidden_field :reset_password_token 
+    .form-group
+      = f.label :password, "New Password" 
+      = f.password_field :password, autocomplete: "off", class: "form-control", id: :new
+
+    .form-group
+      = f.label :password_confirmation, "Confirm New Password" 
+      = f.password_field :password_confirmation, autocomplete: "off", class: "form-control", id: :confirm 
+
+    = f.submit "Change Password", class: "btn btn-primary btn-block", id: :sub_pass
+  %hr
+  %h3 Unhappy with Jammer?    
+  = button_to "Cancel My Account", registration_path(resource_name), data: {confirm: "Are you sure?" }, method: :delete, class: "btn btn-danger btn-block"

@@ -1,0 +1,14 @@
+%h3 
+  What styles do you play?
+%p
+  From jazz to classical, hard rock to contemporary, we want Jammerr to be as diverse as possible.
+= form_for(@musician, url: musician_path(@musician), method: :patch, remote: true, html: { id: "genres" }) do |f|
+  .form-group
+    %a#add 
+      Add More Genres  
+      %span.glyphicon.glyphicon-plus
+  .form-group
+    = f.hidden_field :genres, value: "genres"
+    = f.label :genre_1
+    = f.text_field :g1, class: "form-control gen"
+  = f.submit :Update, class: "btn btn-primary", id: "styles"

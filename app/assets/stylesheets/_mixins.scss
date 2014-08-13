@@ -5,10 +5,20 @@
 	left: 0;
 	height: 100%;
 	width: 100%;
-	background-image: url('http://wallpaperpanda.com/wallpapers/Gi6/eLM/Gi6eLMokT.jpg');
+	background-image: $bg3;
 	background-repeat: no-repeat;
 	background-attachment: fixed;
-	background-size: cover;
+	background-size: 100%;
+	&:before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		right: 0;
+		opacity: .5;
+		background-image: linear-gradient(to bottom right, #002f4b, #dc4225);
+	}
 }
 
 @mixin center-content($left, $top, $margin_top, $margin_left) {
@@ -18,8 +28,14 @@
 	position: absolute;
 }
 
-@mixin power-header($color) {
+@mixin power-header($color, $font-size) {
 	color: $color;
-	font-size: 65px;
+	font-size: $font-size;
 	font-weight: 100;
+}
+
+@mixin transition($type, $length, $end) {
+	transition: $type $length $end;
+	-moz-transition: $type $length $end;
+	-webkit-transition: $type $length $end;
 }
