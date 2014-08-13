@@ -252,6 +252,7 @@ table {
 	height: 50px;
 	background-color: rgb(94, 94, 94);
 	padding-top: 7px;
+	opacity: 0.9;
 }
 
 .pic_link, .span_pic, .pic_link:hover {
@@ -296,4 +297,8 @@ table {
 	width: 15%;
 	margin-left: 5%;
 	display: inline-block;
+}
+
+.for-avatar {
+	text-align: center;
 }

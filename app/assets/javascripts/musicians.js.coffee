@@ -6,6 +6,7 @@
 # effectively, we make a get request to the messages controller in order to return the partial
 # corresponding to the desired message. we then append this in the right column of the messages page.
 subscriptions = []
+
 get_message = ->
 	$('#message-pane').css('display', 'block')
 	$('.not-selected').css('display', 'none')
@@ -31,10 +32,12 @@ get_message = ->
 				reply_string = ''
 				if data["sender"] == musician_id
 					reply_string += "<div class='col-xs-offset-2 col-xs-9 reply-r reply data-reply-id' " + data["sender"]+ ">"
+					reply_string += "<table><tr><td class='body'>" + data["body"] + "</td><td class='img'><div class='pic'><img class='img-circle reply-pic' src='" + data["avatar"] + "'></div>"
+					reply_string += "<div class='name-or-date'>" + data["name"] + "</div><div class='name-or-date'></div></td></tr></table></div>"
 				else
-					reply_string += "<div class='col-xs-offset-2 col-xs-9 reply-l reply data-reply-id' " + data["sender"]+ ">"
-				reply_string += "<table><tr><td class='body'>" + data["body"] + "</td><td class='img'><div class='pic'><img class='img-circle reply-pic' src='" + data["avatar"] + "'></div>"
-				reply_string += "<div class='name-or-date'>" + data["name"] + "</div><div class='name-or-date'></div></td></tr></table></div>"
+					reply_string += "<div class='col-xs-offset-1 col-xs-9 reply-l reply data-reply-id' " + data["sender"]+ ">"
+					reply_string += "<table><tr><td class='img'><div class='pic'><img class='img-circle reply-pic' src='" + data["avatar"] + "'></div>"
+					reply_string += "<div class='name-or-date'>" + data["name"] + "</div><div class='name-or-date'></div></td><td class='body'>" + data["body"] + "</td></tr></table></div>"
 				$('#replies').append(reply_string)
 				$('#replies').scrollTop($('.replies')[0].scrollHeight))
 
@@ -50,7 +53,7 @@ get_message = ->
 						sent_by: musician_id
 						message_id: message_id
 				dataType: "json"
-			}).done (data) ->
+			}).done( (data) ->
 				client.publish('/messages/' + message_id, {
 					body: data["body"],
 					sender: data["sender"],
@@ -58,7 +61,7 @@ get_message = ->
 					id: data["reply_id"],
 					name: data["name"],
 					avatar: data["avatar"]
-				})
+				}))
 			false
 
 ## do not allow the user to submit a blank password form

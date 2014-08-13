@@ -76,7 +76,7 @@ class SongsController < ApplicationController
 	def failure_message(mp3, under_five)
 		flash[:failure] = 
 		if mp3.nil? || !mp3
-			"Please either an mp3, mp4, or mpeg file."
+			"Please upload either an mp3, mp4, or mpeg file."
 		elsif !under_five
 			"You have reached your 5 song limit."
 		end

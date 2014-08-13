@@ -13,7 +13,7 @@ class MusiciansController < ApplicationController
 	end
 
 	def edit
-		enable_devise
+		redirect_to edit_user_registration_path
 	end
 
 	def update
