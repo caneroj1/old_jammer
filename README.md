@@ -28,3 +28,5 @@ https://console.aws.amazon.com/iam/home
 
 <h2>To start Faye:</h2>
 <p>rackup faye.ru -E production -s thin</p>
+
+<h2>Give new collaborators the application.yml and secrets.yml file</h2>
