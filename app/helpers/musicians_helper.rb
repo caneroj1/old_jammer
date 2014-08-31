@@ -19,4 +19,21 @@ module MusiciansHelper
 			true
 		end
 	end
+
+	def message_type(message)
+		if message.sent_by.eql?(current_user.id)
+			"Your #{message.type?} to "
+		else
+			"#{message.type?} from "
+		end
+	end
+
+	def message_link(message)
+		if message.sent_by.eql?(current_user.id)
+			receiver = message.receiver
+			link_to "#{receiver.first_name}", musician_path(receiver.id)
+		else
+			link_to "#{message.sender}", musician_path(message.sent_by)
+		end
+	end
 end

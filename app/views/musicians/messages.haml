@@ -5,17 +5,17 @@
 			%h1.text-center Messages
 			%ul.nav.nav-pills.nav-justified
 				%li.active
-					%a{href: "#sent", data: { toggle: :tab } } Sent
-				%li
 					%a{href: "#received", data: { toggle: :tab } } Received
+				%li
+					%a{href: "#sent", data: { toggle: :tab } } Sent
 			%hr
 			.tab-content
-				.tab-pane.active#sent
-					%ul.list-unstyled
-						= render partial: "partials/message/list_of_messages", locals: { receiving: false }
-				.tab-pane#received
+				.tab-pane.active#received
 					%ul.list-unstyled
 						= render partial: "partials/message/list_of_messages", locals: { receiving: true }
+				.tab-pane#sent
+					%ul.list-unstyled
+						= render partial: "partials/message/list_of_messages", locals: { receiving: false }						
 		.col-xs-8.left-info#message-pane
 			%h2.text-center.not-selected Select one of your messages from the left.
 			= image_tag "loader.gif", class: "hidden-loader"

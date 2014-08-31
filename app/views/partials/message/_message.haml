@@ -2,8 +2,8 @@
 	= message.subject
 	%small= "last message: #{message.last_active_time}"
 %h4.text-center
-	= "#{message.type?} from" 
-	= link_to "#{message.sender}", musician_path(message.sent_by)
+	= message_type(message)
+	= message_link(message)
 .col-xs-10.col-xs-offset-1.replies#replies{ data: { sender: message.sent_by , replies: message.replies.count } }
 	%div{ class: original_message(current_user.id, message.sent_by), data: { reply_id: reply.id } }
 		%table
