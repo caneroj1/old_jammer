@@ -20,7 +20,7 @@ get_message = ->
 	).done ->
 		$('.replies').scrollTop($('.replies')[0].scrollHeight)
 
-		client = new Faye.Client('http://localhost:9292/faye')
+		client = new Faye.Client('http://159.91.189.220:9292/faye')
 		
 		musician_id = $('#musician_id').data("id")
 		message_id = $('#message-id').text()
