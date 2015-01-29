@@ -1,3 +1,18 @@
+<p>This is the main page of Jammer.</p>
+<img src="public/images/cover.png">
+
+<p>This is the sign up part of the main page.</p>
+<img src="public/images/signup.png">
+
+<p>This is the main search page of Jammer.</p>
+<img src="public/images/search.png">
+
+<p>This is the user profile.</p>
+<img src="public/images/profile.png">
+
+<p>This is the edit part of the user profile.</p>
+<img src="public/images/edit.png">
+
 <p>to install imagemagick</p>
 
 <p>brew install imagemagick -- with homebrew</p>
